@@ -55,8 +55,17 @@ public class test {
 		
 		ModelAndView mav = new ModelAndView();	
 		mav.addObject("name",dname);
-		mav.setViewName("prohome/header");
+		mav.setViewName("prohome/common/header");
 		return mav;
+	}
+	
+	@GetMapping("userMain")
+	public ModelAndView userMain () {
+		logger.info("userMain 호출");
+		ModelAndView mav = new ModelAndView();	
+		mav.setViewName("prohome/userPage/main");
+		return mav;
+		
 	}
 	
 	@GetMapping("account")
