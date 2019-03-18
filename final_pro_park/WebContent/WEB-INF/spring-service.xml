@@ -15,6 +15,9 @@
 	 -->
 	 
 	 <bean id="test_Logic" class="park.mvc.logic.test_Logic"> </bean>
+	 <bean id="adminLogic" class="park.mvc.logic.AdminLogic"> </bean>
+	 <bean id="coalitionLogic" class="park.mvc.logic.CoalitionLogic"> </bean>
+	 <bean id="memberLogic" class="park.mvc.logic.MemberLogic"> </bean>
 	 
 	 
 	
