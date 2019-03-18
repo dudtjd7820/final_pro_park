@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,19 +8,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
     <title>PROHOME - Responsive Real Estate Template</title>
 
-	<link rel="stylesheet" href="../../../resources/prohome/css/bootstrap.min.css">                            Bootstrap
-    <link rel="stylesheet" href="../../../resources/prohome/css/vendor/font-awesom/css/font-awesome.min.css">  Font Awesome
-	<link rel="stylesheet" href="../../../resources/prohome/css/vendor/mmenu/jquery.mmenu.all.css" />          Menu Responsive
-	<link rel="stylesheet" href="../../../resources/prohome/css/vendor/animate-wow/animate.css">               Animation WOW 
+	<link rel="stylesheet" href="../../../resources/prohome/css/bootstrap.min.css">                            <!-- Bootstrap -->
+    <link rel="stylesheet" href="../../../resources/prohome/css/vendor/font-awesom/css/font-awesome.min.css">  <!-- Font Awesome -->
+	<link rel="stylesheet" href="../../../resources/prohome/css/vendor/mmenu/jquery.mmenu.all.css" />          <!-- Menu Responsive -->
+	<link rel="stylesheet" href="../../../resources/prohome/css/vendor/animate-wow/animate.css">               <!-- Animation WOW --> 
 
-    <link rel="stylesheet" href="../../../resources/prohome/css/vendor/labelauty/labelauty.css">               Checkbox form Style
-	<link rel="stylesheet" href="../../../resources/prohome/css/vendor/nouislider/nouislider.min.css">         Slider Price
-    <link rel="stylesheet" href="../../../resources/prohome/css/vendor/easydropdown/easydropdown.css">         Select form Style
-    <link rel="stylesheet" href="../../../resources/prohome/css/ui-spinner.css">                               Spinner
+    <link rel="stylesheet" href="../../../resources/prohome/css/vendor/labelauty/labelauty.css">               <!-- Checkbox form Style -->
+	<link rel="stylesheet" href="../../../resources/prohome/css/vendor/nouislider/nouislider.min.css">         <!-- Slider Price -->
+    <link rel="stylesheet" href="../../../resources/prohome/css/vendor/easydropdown/easydropdown.css">         <!-- Select form Style -->
+    <link rel="stylesheet" href="../../../resources/prohome/css/ui-spinner.css">                               <!-- Spinner -->
 
-	<link rel="stylesheet" href="../../../resources/prohome/css/menu.css">                                     Include Menu stylesheet
-	<link rel="stylesheet" href="../../../resources/prohome/css/custom.css">                                   Custom Stylesheet
-    <link rel="stylesheet" href="../../../resources/prohome/css/media-query.css">                              Media Query 
+	<link rel="stylesheet" href="../../../resources/prohome/css/menu.css">                                     <!-- Include Menu stylesheet -->
+	<link rel="stylesheet" href="../../../resources/prohome/css/custom.css">                                   <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="../../../resources/prohome/css/media-query.css">                              <!-- Media Query  -->
 
 	<!-- Use Iconifyer to generate all the favicons and touch icons you need: http://iconifier.net -->
 	<link rel="shortcut icon" href="../../../resources/prohome/images/favicon/favicon.ico" type="image/x-icon" />
@@ -50,9 +50,9 @@
 	
 	
 	<div id="page-container">
-		<header class="menu-color-line" id="header-container-box">	<!--  @@@@@@@@@@@@@@@@@@@@Çì´õ ºÎºĞ ½ÃÀÛ@@@@@@@@@@@@@@@@@@@@-->
+		<header class="menu-color-line" id="header-container-box">	<!--  @@@@@@@@@@@@@@@@@@@@í—¤ë” ë¶€ë¶„ ì‹œì‘@@@@@@@@@@@@@@@@@@@@-->
 		
-		<!--  @@@@@@@@@@@@@@@@@@@@ÀÎÆ÷ ºÎºĞ ½ÃÀÛ@@@@@@@@@@@@@@@@@@@@-->
+		<!--  @@@@@@@@@@@@@@@@@@@@ì¸í¬ ë¶€ë¶„ ì‹œì‘@@@@@@@@@@@@@@@@@@@@-->
 			<div class="info"><!-- info -->
 				<div class="container">
 					<div class="row">
@@ -70,173 +70,75 @@
 				</div>			
 			</div><!-- /.info -->	
 			
-			<div class="container" id="menu-nav">	<!--  @@@@@@@@@@@@@@@@@@@@¸Ş´º ºÎºĞ ½ÃÀÛ@@@@@@@@@@@@@@@@@@@@-->
+			<div class="container" id="menu-nav">	<!--  @@@@@@@@@@@@@@@@@@@@ë©”ë‰´ ë¶€ë¶„ ì‹œì‘@@@@@@@@@@@@@@@@@@@@-->
 				<nav id="navigation">
 					<ul>
 						<li class="has_submenu">
-							<a href="#">È¨È­¸é</a>
+							<a href="#">íšŒì‚¬</a>
 							<ul>
-								<li><a href="index-property-slide.html">carousel Property</a></li>
-								<li class="has_submenu">
-									<a href="#">carousel</a>
-									<ul>
-										<li><a href="index-carousel.html">Menu Base</a></li>
-										<li><a href="index-carousel-v2.html">Menu V2</a></li>
-										<li><a href="index-carousel-v3.html">Menu V3</a></li>
-										<li><a href="index-carousel-v4.html">Menu V4</a></li>
-										<li><a href="index-carousel-v5.html">Menu V5 + FullHeight</a></li>
-									</ul>
-								</li>
-								<li class="has_submenu">
-									<a href="#">Interactive Map</a>
-									<ul>
-										<li><a href="index-map.html">Menu Base</a></li>
-										<li><a href="index-map-v2.html">Menu V2</a></li>
-										<li><a href="index-map-v3.html">Menu V3</a></li>
-										<li><a href="index-map-v4.html">Menu V4</a></li>
-										<li><a href="index-map-v5.html">Menu V5 + FullHeight</a></li>
-									</ul>
-								</li>
-								<li class="has_submenu">
-									<a href="#">carousel + Search</a>
-									<ul>
-										<li><a href="index-search.html">Menu Base</a></li>
-										<li><a href="index-search-v2.html">Menu V2</a></li>
-										<li><a href="index-search-v3.html">Menu V3</a></li>
-										<li><a href="index-search-v4.html">Menu V4</a></li>
-										<li><a href="index-search-v5.html">Menu V5 + FullHeight</a></li>
-									</ul>
-								</li>
+								<li><a href="index-property-slide.html">íšŒì‚¬ì†Œê°œ</a></li>
+								<li><a href="index-property-slide.html">ì œíœ´ì•ˆë‚´</a></li>
+								<li><a href="index-property-slide.html">ì°¾ì•„ì˜¤ëŠ”ê¸¸</a></li>
 							</ul>
 						</li>
+						
 						<li class="has_submenu">
-							<a href="#">µî·Ï Á¤º¸</a>
+							<a href="#">ì œíœ´ì‚¬</a>
 							<ul>
-								<li><a href="new-property.html">Create new Property</a></li>
-								<li><a href="property-detail.html">Property Detail</a></li>
-								<li class="has_submenu">
-									<a href="#">Masonry Listing</a>
-									<ul>
-										<li><a href="properties-listing-2c.html">Listing 2 column</a></li>
-										<li><a href="properties-listing.html">Listing 3 Column</a></li>
-									</ul>
-								</li>
-								<li class="has_submenu">
-									<a href="properties-listing-grid.html">Grid Listing</a>
-									<ul>
-										<li><a href="properties-listing-grid-rc.html">Listing Right column</a></li>
-										<li><a href="properties-listing-grid-lc.html">Listing Left Column</a></li>
-									</ul>
-								</li>
-								<li class="has_submenu">
-									<a href="#">Lines Listing</a>
-									<ul>
-										<li><a href="properties-listing-lines-rc.html">Listing Right column</a></li>
-										<li><a href="properties-listing-lines-lc.html">Listing Left Column</a></li>
-									</ul>
-								</li>
+								<li><a href="new-property.html">ì œíœ´ì‚¬ ë¦¬ìŠ¤íŠ¸</a></li>
+								<li><a href="new-property.html">ì œíœ´ì‚¬ ìœ„ì¹˜ë³´ê¸°</a></li>
+								<li><a href="new-property.html">ì£¼ì°¨ì¥ í›„ê¸°</a></li>
 							</ul>
 						</li>
-						<li class="has_submenu"><a href="#">ÆäÀÌÁö</a>
-							<ul>
-								<li class="has_submenu">
-									<a href="#">Gallery</a>
-									<ul>
-										<li><a href="gallery.html">Isotope</a></li>
-										<li><a href="gallery-v2.html">Masonry</a></li>
-										<li><a href="gallery-v3.html">Masonry + Isotope</a></li>
-									</ul>
-								</li>
-								<li class="has_submenu">
-									<a href="#">Contact</a>
-									<ul>
-										<li><a href="contact.html">Contact V1</a></li>
-										<li><a href="contact-v2.html">Contact V2</a></li>
-										<li><a href="contact-v3.html">Contact V3</a></li>
-									</ul>
-								</li>
-								<li><a href="faq.html">FAQ</a></li>
-								<li><a href="left-sidebar.html">Left Sidebar</a></li>
-								<li><a href="right-sidebar.html">Right Sidebar</a></li>
-								<li><a href="shortcodes.html">Shortcodes</a></li>
-								<li class="has_submenu">
-									<a href="#">Timeline</a>
-									<ul>
-										<li><a href="timeline.html">Timeline</a></li>
-										<li><a href="timeline-v2.html">Parallax Timeline</a></li>
-									</ul>
-								</li>
-								<li class="has_submenu">
-									<a href="#">Pricing Plans</a>
-									<ul>
-										<li><a href="pricing.html">Pricing</a></li>
-										<li><a href="pricing-v2.html">Pricing V2</a></li>
-									</ul>
-								</li>
-								<li><a href="terms-conditions.html">Terms &amp; Conditions</a></li>
-								<li><a href="comingsoon.html">Coming Soon</a></li>
-								<li class="has_submenu">
-									<a href="#">Error Pages</a>
-									<ul>
-										<li><a href="401.html">401</a></li>
-										<li><a href="403.html">403</a></li>
-										<li><a href="404.html">404</a></li>
-										<li><a href="500.html">500</a></li>
-									</ul>
-								</li>
-							</ul>
-						</li>
+						
 						<li class="has_submenu">
-							<a href="#">´ëÇ¥</a>
+							<a href="#">ì‚¬ìš©ìë©”ë‰´</a>
 							<ul>
-								<li><a href="create-agency.html">Create Agency</a></li>
-								<li class="has_submenu">
-									<a href="#">Agents Listing</a>
-									<ul>
-										<li><a href="agents-listing.html">Agents Listing</a></li>
-										<li><a href="agents-listing-v2.html">Agents Listing V2</a></li>
-										<li><a href="agents-listing-v3.html">Agents Listing V3</a></li>
-									</ul>
-								</li>
-								<li><a href="agent-detail.html">Agent Detail</a></li>
-								<li><a href="agencies-listing.html">Agencies Listing</a></li>
-								<li><a href="agency-detail.html">Agency Detail</a></li>
+								<li><a class="has_submenu">ë‚˜ì˜ì •ë³´</a></li>
+								<li><a class="has_submenu">ì‚¬ìš©ì´ë ¥</a></li>
+								<li><a class="has_submenu">1:1 ë¬¸ì˜ë‚´ì—­</a></li>
+								<li><a class="has_submenu">ë‚´ê°€ì“´ê¸€</a></li>
 							</ul>
 						</li>
+						
 						<li class="has_submenu">
-							<a href="#">»ç¿ëÀÚ ÆäÀÌÁö</a>
+							<a href="#">ê²°ì œ</a>
 							<ul>
-								<li><a href="invoice-print.html">Invoice</a></li>
-								<li><a href="profile.html">Profile</a></li>
-								<li><a href="my-properties.html">My Properties</a></li>
-								<li><a href="bookmarked.html">Bookmarked Properties</a></li>
-								<li><a href="create-account.html">Create Account</a></li>
-								<li><a href="sign-in.html">Sign In</a></li>
-								<li><a href="login.html">Login page</a></li>
+								<li><a href="create-agency.html">ê²°ì œí•˜ê¸°(ì¶©ì „í•˜ê¸°)</a></li>
+								<li><a href="create-agency.html">ê²°ì œì´ë ¥</a></li>
+								<li><a href="create-agency.html">ê²°ì œì·¨ì†Œ</a></li>
 							</ul>
 						</li>
-						<li class="current-menu-item has_submenu"><a href="#">About</a>
+						
+						<li class="has_submenu">
+							<a href="#">ì˜ˆì•½</a>
 							<ul>
-								<li><a href="about.html">About Version 1</a></li>
-								<li><a href="about-v2.html">About Version 2</a></li>
+								<li><a href="invoice-print.html">ì˜ˆì•½í•˜ê¸°</a></li>
+								<li><a href="invoice-print.html">ì˜ˆì•½ ìˆ˜ì •/ì·¨ì†Œí•˜ê¸°</a></li>
+								<li><a href="invoice-print.html">ì˜ˆì•½ì´ë ¥</a></li>
+								<li><a href="invoice-print.html">ì˜ˆì•½í˜„í™©ë³´ê¸°</a></li>
 							</ul>
 						</li>
-						<li class="has_submenu"><a href="#">ºí·Î±×</a>
+						
+						<li class="current-menu-item has_submenu">
+							<a href="#">ê³ ê°ì„¼í„°</a>
 							<ul>
-								<li><a href="blog.html">blog V1</a></li>
-								<li><a href="blog-v2.html">blog V2</a></li>
-								<li><a href="blog-v3.html">blog V3</a></li>
-								<li><a href="blog-detail.html">blog Details</a></li>
-								<li><a href="blog-detail-full.html">blog Details V2</a></li>
+								<li><a href="about.html">ì•„ì´ë””/ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°</a></li>	
+								<li><a href="notice.jsp">ê³µì§€ì‚¬í•­</a></li>	
+								<li><a href="about.html">ì§ˆë¬¸ê²Œì‹œíŒ</a></li>	
+								<li><a href="about.html">ììœ ê²Œì‹œíŒ</a></li>	
+								<li><a href="about.html">1:1ë¬¸ì˜</a></li>	
+								<li><a href="about.html">ì œíœ´ë¬¸ì˜</a></li>	
 							</ul>
 						</li>
+						
 					</ul>
 				</nav>
-			</div> <!--  @@@@@@@@@@@@@@@@@@@@¸Ş´º ºÎºĞ ½ÃÀÛ@@@@@@@@@@@@@@@@@@@@-->
+			</div> <!--  @@@@@@@@@@@@@@@@@@@@ë©”ë‰´ ë¶€ë¶„ ì‹œì‘@@@@@@@@@@@@@@@@@@@@-->
 			
 			<a href="#" class="fixed-button top"><i class="fa fa-chevron-up"></i></a>
 			<a href="#" class="hidden-xs fixed-button email" data-toggle="modal" data-target="#modal-contact" data-section="modal-contact"><i class="fa fa-envelope-o"></i></a>
-		</header>	<!--  @@@@@@@@@@@@@@@@@@@@Çì´õ ºÎºĞ ³¡@@@@@@@@@@@@@@@@@@@@-->
+		</header>	<!--  @@@@@@@@@@@@@@@@@@@@í—¤ë” ë¶€ë¶„ ë@@@@@@@@@@@@@@@@@@@@-->
 		
 	</div><!-- /#page-container -->
 
@@ -266,7 +168,7 @@
 		setTimeout(function(){$('.botton-options').click()}, 4000);
 	</script>
 	
-	<!--  @@@@@@@@@@@@@@@@@@@@¸ğ´Ş ( ·Î±×ÀÎ ÀÌ³ª ¸Ş¼¼Áö ÀüÈ­ºÎºĞ´­·¶À»¶§ ) ºÎºĞ ³¡ @@@@@@@@@@@@@@@@@@@@-->
+	<!--  @@@@@@@@@@@@@@@@@@@@ëª¨ë‹¬ ( ë¡œê·¸ì¸ ì´ë‚˜ ë©”ì„¸ì§€ ì „í™”ë¶€ë¶„ëˆŒë €ì„ë•Œ ) ë¶€ë¶„ ë @@@@@@@@@@@@@@@@@@@@-->
 		<div class="modal fade login-modal" tabindex="-1" role="dialog" aria-hidden="true"> 
 			<div class="modal-dialog">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-close"></i></button>
@@ -278,7 +180,7 @@
 				</div><!-- ./login-button-container -->
 				<div class="form-container">
 					<form method="post" action="#">
-						<div id="login" class="box"> <!--  @@@@@@@@@@@@@@@@@@@@¸ğ´Ş ·Î±×ÀÎ ½ÃÀÛ @@@@@@@@@@@@@@@@@@@@-->
+						<div id="login" class="box"> <!--  @@@@@@@@@@@@@@@@@@@@ëª¨ë‹¬ ë¡œê·¸ì¸ ì‹œì‘ @@@@@@@@@@@@@@@@@@@@-->
 							<h2 class="title">Login in to your account</h2>
 							<h3 class="sub-title">It is a breach of our terms and conditions to provide username and password details to unauthorised third parties. Unauthorised use may lead to suspension or termination.</h3>
 							<div class="field">
@@ -294,9 +196,9 @@
 								<button type="button" class="btn btn-reverse button-form">Reset</button>
 								<button type="button" class="btn btn-default button-form">Login</button>
 							</div>
-						</div> <!-- ./login --> 	<!--  @@@@@@@@@@@@@@@@@@@@¸ğ´Ş ·Î±×ÀÎ ³¡ @@@@@@@@@@@@@@@@@@@@-->
+						</div> <!-- ./login --> 	<!--  @@@@@@@@@@@@@@@@@@@@ëª¨ë‹¬ ë¡œê·¸ì¸ ë @@@@@@@@@@@@@@@@@@@@-->
 						
-						<div id="sign-in" class="box">	<!--  @@@@@@@@@@@@@@@@@@@@¸ğ´Ş È¸¿ø°¡ÀÔ ½ÃÀÛ @@@@@@@@@@@@@@@@@@@@-->
+						<div id="sign-in" class="box">	<!--  @@@@@@@@@@@@@@@@@@@@ëª¨ë‹¬ íšŒì›ê°€ì… ì‹œì‘ @@@@@@@@@@@@@@@@@@@@-->
 							<h2 class="title">Sign In</h2>
 							<h3 class="sub-title">Create a Free account and discover how you can centralize all communication around a transaction, connect with clients, market your listings, and more. </h3>
 							<div class="form-inline">
@@ -321,9 +223,9 @@
 								<span class="remember"><input class="labelauty" type="checkbox" data-labelauty="I have read the privacy policy." checked /></span>
 								<button type="button" class="btn btn-default button-form">Sign in</button>
 							</div>
-						</div><!-- ./sign-in --> <!--  @@@@@@@@@@@@@@@@@@@@¸ğ´Ş È¸¿ø°¡ÀÔ ³¡ @@@@@@@@@@@@@@@@@@@@-->
+						</div><!-- ./sign-in --> <!--  @@@@@@@@@@@@@@@@@@@@ëª¨ë‹¬ íšŒì›ê°€ì… ë @@@@@@@@@@@@@@@@@@@@-->
 						
-						<div id="setting" class="box"> <!--  @@@@@@@@@@@@@@@@@@@@ ÇÁ·ÎÇÊ º¯°æ ¼ÂÆÃ ½ÃÀÛ @@@@@@@@@@@@@@@@@@@@-->
+						<div id="setting" class="box"> <!--  @@@@@@@@@@@@@@@@@@@@ í”„ë¡œí•„ ë³€ê²½ ì…‹íŒ… ì‹œì‘ @@@@@@@@@@@@@@@@@@@@-->
 							<h2 class="title">Setting profile</h2>
 							<h3 class="sub-title">Please note: You won't be able to change your name within the next 60 days. Make sure that you don't add any unusual capitalisation, punctuation, characters or random words. <a href="#">Learn more</a>.</h3>
 							<div class="field">
@@ -346,11 +248,11 @@
 								<button type="button" class="btn btn-reverse button-form">Cancel</button>
 								<button type="button" class="btn btn-default button-form">Update</button>
 							</div>
-						</div><!-- ./recovery -->	<!--  @@@@@@@@@@@@@@@@@@@@ ÇÁ·ÎÇÊ º¯°æ ¼ÂÆÃ ³¡ @@@@@@@@@@@@@@@@@@@@-->
+						</div><!-- ./recovery -->	<!--  @@@@@@@@@@@@@@@@@@@@ í”„ë¡œí•„ ë³€ê²½ ì…‹íŒ… ë @@@@@@@@@@@@@@@@@@@@-->
 						
-						<div id="recovery" class="box"> <!--  @@@@@@@@@@@@@@@@@@@@ ¾ÆÀÌµğÃ£±â ? ºñ¹øÃ£±â.½ÃÀÛ @@@@@@@@@@@@@@@@@@@@-->
+						<div id="recovery" class="box"> <!--  @@@@@@@@@@@@@@@@@@@@ ì•„ì´ë””ì°¾ê¸° ? ë¹„ë²ˆì°¾ê¸°.ì‹œì‘ @@@@@@@@@@@@@@@@@@@@-->
 							<h2 class="title">Need a new password?</h2>
-							<h3 class="sub-title">Enter your email address, and we¡¯ll email you instructions to reset your password.</h3>
+							<h3 class="sub-title">Enter your email address, and weâ€™ll email you instructions to reset your password.</h3>
 							<div class="field">
 								<input id="recovery-email" class="form-control" type="text" name="recovery-email" placeholder="Your email">
 								<i class="fa fa-envelope-o"></i>
@@ -358,11 +260,11 @@
 							<div class="field footer-form text-right">
 								<button type="button" class="btn btn-default button-form">Recovery</button>
 							</div>
-						</div><!-- ./recovery --> <!--  @@@@@@@@@@@@@@@@@@@@ ¾ÆÀÌµğÃ£±â ºñ¹øÃ£±â ³¡ @@@@@@@@@@@@@@@@@@@@-->
+						</div><!-- ./recovery --> <!--  @@@@@@@@@@@@@@@@@@@@ ì•„ì´ë””ì°¾ê¸° ë¹„ë²ˆì°¾ê¸° ë @@@@@@@@@@@@@@@@@@@@-->
 					</form><!-- ./form-container -->
 				</div><!-- ./login-button-container -->
 			</div><!-- /.modal-dialog -->
-		</div><!-- /.modal --> <!--  @@@@@@@@@@@@@@@@@@@@¸ğ´Ş ( ·Î±×ÀÎ ÀÌ³ª ¸Ş¼¼Áö ÀüÈ­ºÎºĞ´­·¶À»¶§ ) ºÎºĞ ³¡ @@@@@@@@@@@@@@@@@@@@-->
+		</div><!-- /.modal --> <!--  @@@@@@@@@@@@@@@@@@@@ëª¨ë‹¬ ( ë¡œê·¸ì¸ ì´ë‚˜ ë©”ì„¸ì§€ ì „í™”ë¶€ë¶„ëˆŒë €ì„ë•Œ ) ë¶€ë¶„ ë @@@@@@@@@@@@@@@@@@@@-->
 
 	
   </body>

@@ -29,6 +29,7 @@ public class test_Dao {
 		
 		sqlSessionTemplate.selectOne("proc_login", pMap);
 		//프로시저의 OUT속성의 값을 파라미터 타입을 통해서 읽어올 수 있다.
+		
 		mem_name = (String)pMap.get("r_name").toString();
 		
 		logger.info("OUT속성에 저장된 값 :"+mem_name);
