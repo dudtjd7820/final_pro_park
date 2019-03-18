@@ -48,7 +48,7 @@
 	 <bean id="test_Dao" class="park.mvc.dao.test_Dao"/>
 	 <bean id="adminDao" class="park.mvc.dao.AdminDao"/>
 	 <bean id="coalitionDao" class="park.mvc.dao.CoalitionDao"/>
-	 <bean id="userDao" class="park.mvc.dao.UserDao"/>
+	 <bean id="memberDao" class="park.mvc.dao.MemberDao"/>
 	 
 	
 	

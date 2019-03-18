@@ -1,5 +1,5 @@
 package park.mvc.logic;
 
-public class UserLogic {
+public class MemberLogic {
 
 }

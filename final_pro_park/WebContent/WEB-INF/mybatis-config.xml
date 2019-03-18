@@ -6,7 +6,7 @@
 		<mapper resource="park/mapper/test.xml"/>
 		<mapper resource="park/mapper/AdminMapper.xml"/>
 		<mapper resource="park/mapper/CoalitionMapper.xml"/>
-		<mapper resource="park/mapper/UserMapper.xml"/>
+		<mapper resource="park/mapper/MemberMapper.xml"/>
 		
 	</mappers>
 </configuration>
