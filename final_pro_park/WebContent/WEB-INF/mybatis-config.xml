@@ -5,7 +5,7 @@
 
 	<typeAliases>
 		<typeAlias alias="BoardVO" type="park.VO.BoardVO"/>
-		<typeAlias alias="MangerVO" type="park.VO.MangerVO"/>
+		<typeAlias alias="MangerVO" type="park.VO.ManagerVO"/>
 		<typeAlias alias="MemberVO" type="park.VO.MemberVO"/>
 		<typeAlias alias="PaymentVO" type="park.VO.PaymentVO"/>
 		<typeAlias alias="RealTimeVO" type="park.VO.RealTimeVO"/>
