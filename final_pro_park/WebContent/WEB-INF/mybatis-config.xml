@@ -2,6 +2,15 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+
+	<typeAliases>
+		<typeAlias alias="BoardVO" type="park.VO.BoardVO"/>
+		<typeAlias alias="MangerVO" type="park.VO.MangerVO"/>
+		<typeAlias alias="MemberVO" type="park.VO.MemberVO"/>
+		<typeAlias alias="PaymentVO" type="park.VO.PaymentVO"/>
+		<typeAlias alias="RealTimeVO" type="park.VO.RealTimeVO"/>
+		<typeAlias alias="ReserveVO" type="park.VO.ReserveVO"/>
+	</typeAliases>
 	<mappers>
 		<mapper resource="park/mapper/test.xml"/>
 		<mapper resource="park/mapper/AdminMapper.xml"/>
