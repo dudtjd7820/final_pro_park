@@ -85,5 +85,14 @@ public class test {
 		return mav;
 	}
 	
+	@GetMapping("easyuitest")
+	public ModelAndView easyuitest () {
+		logger.info("userMain 호출");
+		ModelAndView mav = new ModelAndView();	
+		mav.setViewName("easyuitest");
+		return mav;
+		
+	}
+	
 
 }

@@ -25,6 +25,13 @@
 		
 	<mvc:annotation-driven/>
 	
+		
+	<mvc:resources location="/images/" mapping="resources/easyui/images/**"/>
+	<mvc:resources location="/js/" mapping="resources/easyui/js/**"/>
+	<mvc:resources location="/demo/" mapping="resources/easyui/demo/**"/>
+	<mvc:resources location="/themes/" mapping="resources/easyui/themes/**"/>
+	
+	
 	<!--viewResolver; controller가 넘긴 view 이름을 통해 알맞은 view를 찾는다. -->
 		
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
