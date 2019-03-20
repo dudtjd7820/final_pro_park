@@ -15,13 +15,13 @@
 <body>
 
 
-<form id="f_login">
+<!-- <form id="f_login">
 	<input class="easyui-textbox" label="아이디" name="mem_id" data-options="iconCls:'icon-man'" style="width:200px">
 	<br>
 	<input class="easyui-textbox" label="비밀번호" name="mem_pw" data-options="iconCls:'icon-lock'" style="width:200px">
 	<a id="btn_login" href="javascript:login()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">로그인</a>
 </form>
-<!-- 쿠키가 있을 때 => 로그인을 했을 때 -->
+쿠키가 있을 때 => 로그인을 했을 때
 <a id="btn_logout" href="javascript:logout()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">로그아웃</a>
 	}
 	
@@ -47,7 +47,7 @@
         <div>
             <a href="#" class="easyui-linkbutton" iconCls="icon-ok" style="width:100%;height:32px">Register</a>
         </div>
-    </div>
+    </div> -->
     
     
 </body>
