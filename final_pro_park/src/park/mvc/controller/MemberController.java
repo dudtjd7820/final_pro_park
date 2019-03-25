@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import park.VO.ReserveVO;
 import park.mvc.dao.MemberDao;
 
 @Controller
@@ -46,7 +47,7 @@ public class MemberController {
 //
 //	<!-- 영성 -->
 	
-	@GetMapping("reservation")
+	@GetMapping("/reservation")
 	public ModelAndView reservationpage() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("prohome/userPage/reserv/reservation");
@@ -54,6 +55,14 @@ public class MemberController {
 		return mav;
 		
 	}
+	
+	@GetMapping("/reserv")
+	public ModelAndView getreserv() {
+		ModelAndView mav = new ModelAndView();
+		return mav;
+		
+	}
+	
 //	<!-- 영성 -->
 
 	

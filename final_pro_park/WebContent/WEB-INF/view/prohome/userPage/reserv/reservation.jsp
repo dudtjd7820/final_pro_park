@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<head>
 
+</head>
 <html lang="en">
 	<%@ include file="../common/header.jsp" %>
 <!--  여기 까지가  header.jsp에 들어있다 . header 부분을 잘랐다 . -->
@@ -48,15 +50,14 @@
 					<!--  여기가 센터 -->
 						<div class="row">
 					나의예약이력 (현제 예약중인 )
-					
-<table class="easyui-datagrid"  style="width:800px; height:300px;"
+ <table id="reserv" class="easyui-datagrid"  style="width:800px; height:300px;"
   data-options="url:'datagrid_data.json',fitColumns:true,singleSelect:true">>
     <thead>
         <tr>
-            <th data-options="field:'사용일 -시간',width:200">사용일 -시간</th>
-            <th data-options="field:'종료일 -시간',width:200">종료일 -시간</th>
-            <th data-options="field:'시용지점',width:200">시용지점</th>
-            <th data-options="field:'차감시간',width:100">지역</th>
+            <th data-options="field:'rrtt_expected_start_time',width:200">사용일 -시간</th>
+            <th data-options="field:'rrtt_expected_end_time',width:200">종료일 -시간</th>
+            <th data-options="field:'rrtt_parking_lot_name',width:200">시용지점</th>
+            <th data-options="field:'rrtt_parking_lot_location',width:100">지역</th>
             <th data-options="field:'차감시간',width:100">차감예상시간</th>
         </tr>
     </thead>
@@ -68,70 +69,123 @@
             <td>002</td><td>name2</td><td>4612</td>
         </tr>
     </tbody>
-</table>
+</table> 
 
-<br>							
+<script type="text/javascript">
+
+function getSelections(){
+	var ids = [];
+	var rows = $('#reserv').datagrid('getSelections');
+	for(var i=0;i<rows.length;i++){
+		ids.push(rows[i].rrtt_expected_start_time);
+		ids.push(rows[i].rrtt_expected_end_time);
+		ids.push(rows[i].rrtt_parking_lot_name);
+		ids.push(rows[i].rrtt_parking_lot_location);
+		var reserv=ids[1];
+		alert(reserv);
+	}
+}
+</script>
+
+<br>
+
+<button onclick="getSelections()" id="btn" type="button" class="btn btn-default" data-toggle="modal" data-target="#upd-Modal" color=>
+  예약 수정
+</button>
+<!-- Modal -->
+<div class="modal fade" id="upd-Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title" id="myModalLabel">예약 시간변경 </h4>
+      </div>
+      <div class="modal-body">
+      
+      <script type="text/javascript">
+      document.write(reserv);
+      out.print(reserv);
+      </script>
+        여기 다 선택한 로우의 내용표시
+        
+     <br>
+        변경할 시작시간
+        <input class="easyui-datetimebox" name="birthday" 
+        data-options="required:true,showSeconds:false" value="3/4/2010 2:3" style="width:150px">
+     <br>   
+        변경할 종료시간
+        <input class="easyui-datetimebox" name="birthday" 
+        data-options="required:true,showSeconds:false" value="3/4/2010 2:3" style="width:150px">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">변경하기</button>
+        <button type="button" class="btn btn-primary">창닫기</button>
+        
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<button onclick="" type="button" class="btn btn-default" data-toggle="modal" data-target="#del-Modal" color="Red">
+  예약 삭제
+</button>
+<!-- Modal -->
+<div class="modal fade" id="del-Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title" id="myModalLabel">예약 삭제 취소</h4>
+      </div>
+      <div class="modal-body">
+      여기서 데이터 테이블 에서 가져온값을 뛰운다 .
+      <br>
+      이예약을 취소하기겠습니까?
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">삭제하기</button>
+        <button type="button" class="btn btn-primary">창닫기</button>
+      </div>
+    </div>
+  </div>
+  여긴몰까요 ?
+</div>
+
+<br>	
+<br>	
+<br>		
+나의예약이력 (종료된 모든 )
+ <table id="reserv" class="easyui-datagrid"  style="width:800px; height:300px;"
+  data-options="url:'datagrid_data.json',fitColumns:true,singleSelect:true">>
+    <thead>
+        <tr>
+            <th data-options="field:'rrtt_expected_start_time',width:200">사용일 -시간</th>
+            <th data-options="field:'rrtt_expected_end_time',width:200">종료일 -시간</th>
+            <th data-options="field:'rrtt_parking_lot_name',width:200">시용지점</th>
+            <th data-options="field:'rrtt_parking_lot_location',width:100">지역</th>
+            <th data-options="field:'차감시간',width:100">이행 여부</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>001</td><td>name1</td><td>2323</td>
+        </tr>
+        <tr>
+            <td>002</td><td>name2</td><td>4612</td>
+        </tr>
+    </tbody>
+</table> 
+
+
+
+<input type="button" onclick="getSelections()" value="안녕" />
+
 							
-							<div class="col-sm-6 col-md-4">
-								<div class="box-ads box-grid">
-									<a href="property-detail.html" class="hover-effect image image-fill">
-										<span class="cover"></span>
-										<img src="images/sample/property/p1.jpg" alt="Sample images" />
-										<h3 class="title">59 Paterson Ave</h3>
-									</a>
-									<span class="price">$ 649.500,00</span>
-									<span class="address"><i class="fa fa-map-marker"></i> Hoboken, NJ 07030, USA</span>
-									<span class="description">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by insages of Lorem Ipsum available, but the majority have suffered alteratiojected humour.</span>
-									<dl class="detail">
-										<dt class="status">Status:</dt><dd><span>Sale</span></dd>
-										<dt class="bed">Beds:</dt><dd><span>5</span></dd>
-										<dt class="bath">Baths:</dt><dd><span>8</span></dd>
-									</dl>
-									<div class="footer">
-										<a href="property-detail.html" class="btn btn-default">Read now</a>
-									</div>
-								</div><!-- ./box-ads -->
-							</div><!-- ./col-md-4 -->
-							<div class="col-sm-6 col-md-4">
-								<div class="box-ads box-grid">
-									<a href="property-detail.html" class="hover-effect image image-fill">
-										<span class="cover"></span>
-										<img src="images/sample/property/p2.jpg" alt="Sample images" />
-										<h3 class="title">477 Jersey Ave</h3>
-									</a>
-									<span class="price">$ 946.500,00</span>
-									<span class="address"><i class="fa fa-map-marker"></i> Jersey City, NJ 07302, USA</span>
-									<span class="description">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</span>
-									<dl class="detail">
-										<dt class="status">Status:</dt><dd><span>Sale</span></dd>
-										<dt class="bed">Beds:</dt><dd><span>4</span></dd>
-										<dt class="bath">Baths:</dt><dd><span>2</span></dd>
-									</dl>
-									<div class="footer">
-										<a href="property-detail.html" class="btn btn-default">Read now</a>
-									</div>
-								</div><!-- ./box-ads -->
-							</div><!-- ./col-md-4 -->
-							<div class="col-sm-6 col-md-4">
-								<div class="box-ads box-grid">
-									<a href="property-detail.html" class="hover-effect image image-fill">
-										<span class="cover"></span>
-										<img src="images/sample/property/p3.jpg" alt="Sample images" />
-										<h3 class="title">27 W 17th St</h3>
-									</a>
-									<span class="price">$ 946.500,00</span>
-									<span class="address"><i class="fa fa-map-marker"></i> New York, NY 10011, USA</span>
-									<span class="description">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</span>
-									<dl class="detail">
-										<dt class="status">Status:</dt><dd><span>Sale</span></dd>
-										<dt class="area">Area:</dt><dd><span>645m2</span></dd>
-										<dt class="bed">Beds:</dt><dd><span>2</span></dd>
-									</dl>
-									<div class="footer">
-										<a href="property-detail.html" class="btn btn-default">Read now</a>
-									</div>
-								</div><!-- ./box-ads -->
-							</div><!-- ./col-md-4 -->
+							
+							
 						</div><!-- ./row -->
 					</div><!-- ./col-md-9 -->
 					<div class="col-sm-4 col-md-3">
@@ -141,16 +195,47 @@
 							<h3 class="title"> 필터 </h3>
 						</div>
 						<div id="filter-box">
-							<a href="#" class="filter"> 서울시 <i class="fa fa-times"></i></a>
-							<a href="#" class="filter"> 가산동 <i class="fa fa-times"></i></a>
-							<a href="#" class="filter"> 월드메르디앙 3차 <i class="fa fa-times"></i></a>
-							<a href="#" class="filter"> 시작날짜 2019/3/12 <i class="fa fa-times"></i></a>
-							<a href="#" class="filter"> 종료날짜 2019/3/12 <i class="fa fa-times"></i></a>
-							<a href="#" class="filter"> 시작시간 12:30 <i class="fa fa-times"></i></a>
-							<a href="#" class="filter"> 종료시간 18:30 <i class="fa fa-times"></i></a>
-							자신이 선택한 메뉴가 여기 입력되게 하고싶다 .
+							<a id="filter_loc" class="filter" > loc <i class="fa fa-times"></i></a>
+							<a id="filter_gu" class="filter" > gu <i class="fa fa-times"></i></a>
+							<a id="filter_city" class="filter"> city <i class="fa fa-times"></i></a>
+							<br>
+							<a id="filter_point" class="filter"> point <i class="fa fa-times"></i></a>
+							<br>
+							<a id="filter_starttime" class="filter"> 시작날짜 <i class="fa fa-times"></i></a>
+							<br>
+							<a id="filter_endtime" class="filter"> 종료날짜  <i class="fa fa-times"></i></a>
 						</div>
 						<!-- ===================== SEARCH ===================== -->
+						 
+						<script type="text/javascript">
+								function setfilter(){
+									var f_loc = $("#select_loc option:selected").val();
+									$("#filter_loc").text(f_loc);
+
+									var f_city = $("#select_city option:selected").val();
+									$("#filter_city").text(f_city);
+
+									var f_gu = $("#select_gu option:selected").val();
+									$("#filter_gu").text(f_gu);
+
+									var f_point = $("#select_point option:selected").val();
+									$("#filter_point").text(f_point);
+
+									var f_starttime = $ ( '#select_starttime'). datetimebox ( 'getValue');
+									$("#filter_starttime").text("사용시작시간 : "+f_starttime);
+
+									var f_endtime = $ ( '#select_endtime'). datetimebox ( 'getValue');
+									$("#filter_endtime").text("사용종료시간 : "+f_endtime);
+
+
+
+									
+									}
+
+								</script>
+						
+						<!--  빠른예약 - 필터 이벤트 처리 . ^ -->
+						
 						<div class="section-title line-style">
 							<h3 class="title">예약 박스 @</h3>
 						</div>
@@ -158,12 +243,13 @@
 							<div class="row">
 								<div class="col-md-12 space-div">
 									<label> 빠른예약 @ </label>
-									<input class="form-control" type="text" name="keywords" id="keywords" placeholder="Keywords" />
+									
+								
 								</div>
 								<div class="col-md-12 space- div">
-									<select class="dropdown" data-settings='{"cutOff": 5}'>
-										<option value="">-- 시 : 도  --</option>
-										<option value="brixton">Brixton</option>
+									<select id="select_loc" name="loc" class="dropdown" onchange="setfilter()" data-settings='{"cutOff": 5}'>
+										<option value="시 : 도"> 시 : 도</option>
+										<option value="서울시 ">서울시 </option>
 										<option value="london">London</option>
 										<option value="middlesex">Middlesex</option>
 										<option value="stratford">Stratford</option>
@@ -171,18 +257,29 @@
 										<option value="west-norwood">West Norwood</option>
 										<option value="westminster">Westminster</option>
 									</select>
+									
 								</div>
+								
+									<div class="col-md-12 space-div">
+									<select id="select_gu" on="" onchange="setfilter()" class="dropdown" data-settings='{"cutOff": 5}'>
+										<option value="##구">-- ##구 --</option>
+										<option value="구로구 "> 구로구</option>
+										<option value="sell">Sell</option>                        
+									</select>
+								</div>
+								
+								
 								<div class="col-md-12 space-div">
-									<select class="dropdown" data-settings='{"cutOff": 5}'>
-										<option value="">-- ##동 --</option>
-										<option value="rent">Rent</option>
+									<select id="select_city" on="" onchange="setfilter()" class="dropdown" data-settings='{"cutOff": 5}'>
+										<option value="##동">-- ##동 --</option>
+										<option value="구로2동 "> 구로2동</option>
 										<option value="sell">Sell</option>                        
 									</select>
 								</div>
 								<div class="col-md-12 space-div">
-									<select class="dropdown" data-settings='{"cutOff": 5}'>
-										<option value="">-- 주차장이름 --</option>
-										<option value="apartments">Apartments</option>
+									<select id="select_point" data-target="setfilter()" onchange="setfilter()" class="dropdown" data-settings='{"cutOff": 5}'>
+										<option value="주차장이름">-- 주차장이름 --</option>
+										<option value="월드3차주차장">월드3차주차장</option>
 										<option value="condos">Condos</option>
 										<option value="duplex">Duplex</option>
 										<option value="houses">Houses</option>
@@ -191,9 +288,12 @@
 										<option value="villa">Villa</option>                        
 									</select>
 								</div>
+								
+								
+								
 								<div class="col-md-12 space-div">
-								<input class="easyui-datetimebox" name="birthday" 
-        data-options="required:true,showSeconds:false" value="3/4/2010 2:3" style="width:150px">
+								<input id="select_starttime" class="easyui-datetimebox" name="birthday" 
+        data-options="required:true,showSeconds:false" value="" style="width:150px">
         <label>-- 시작날짜 시간--</label>
 								
 									<!-- <select class="dropdown">
@@ -206,8 +306,8 @@
 									</select> -->
 								</div>
 								<div class="col-md-12 space-div">
-								<input class="easyui-datetimebox" name="birthday" 
-        data-options="required:true,showSeconds:false" value="3/4/2010 2:3" style="width:150px">
+								<input id="select_endtime"  class="easyui-datetimebox" name="birthday" 
+        data-options="required:true,showSeconds:false" value="" style="width:150px">
          <label>-- 종료날자 시간 --</label>
 									<!-- <select class="dropdown">
 										<option value="">-- 종료날자 시간 --</option>
@@ -232,32 +332,7 @@
 								</div><!-- ./footer -->
 							</div><!-- ./row 2 -->	
 						</div><!-- ./vertical-search-container -->	
-						<!-- 9. Mortage -->
-						<div class="section-title line-style">
-							<h3 class="title">Mortgage Calculate</h3>
-						</div>
-						<div class="mortgage-calculator-box">
-							<form method="post" role="form">
-								<div class="form-group">
-									<label>Sale price ($)</label>
-									<input type="text" id="mc-price" class="form-control" placeholder="es: 200000" />
-								</div>
-								<div class="form-group">
-									<label>Down payment (%)</label>
-									<input type="text" id="mc-down" class="form-control" placeholder="es: 5" />
-								</div>
-								<div class="form-group">
-									<label>Interest Rate (%)</label>
-									<input type="text" id="mc-rate" class="form-control" placeholder="es: 6" />
-								</div>
-								<div class="form-group">
-									<label>Term (years)</label>
-									<input type="text" id="mc-term" class="form-control" placeholder="es: 20" />
-								</div>
-								<button id="mortgage-calc" class="btn btn-reverse" type="button">Calculate</button>
-							</form>
-							<div class="result-calc" id="mc-payment">$ 0,00</div>
-						</div><!-- /.mortgage-calculator -->
+
 					</div><!-- ./col-md-3 -->
 				</div><!-- ./row -->
 			</div><!-- ./container -->
@@ -283,7 +358,7 @@
 
 		<%@ include file ="../common/bottom.jsp" %>
 <!--  헤더부분 에 들어있음 . footer 부분자름 -->
-
+<!-- 
 		<div class="modal fade login-modal" tabindex="-1" role="dialog" aria-hidden="true">
 			<div class="modal-dialog">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-close"></i></button>
@@ -292,7 +367,7 @@
 					<a href="#" data-section="sign-in"><i class="fa fa-pencil-square-o"></i></a>
 					<a href="#" data-section="recovery"><i class="fa fa-lock"></i></a>
 					<a href="#" data-section="setting"><i class="fa fa-cog"></i></a>
-				</div><!-- ./login-button-container -->
+				</div>./login-button-container
 				<div class="form-container">
 					<form method="post" action="#">
 						<div id="login" class="box">
@@ -311,7 +386,7 @@
 								<button type="button" class="btn btn-reverse button-form">Reset</button>
 								<button type="button" class="btn btn-default button-form">Login</button>
 							</div>
-						</div> <!-- ./login -->
+						</div> ./login
 						<div id="sign-in" class="box">
 							<h2 class="title">Sign In</h2>
 							<h3 class="sub-title">Create a Free account and discover how you can centralize all communication around a transaction, connect with clients, market your listings, and more. </h3>
@@ -337,7 +412,7 @@
 								<span class="remember"><input class="labelauty" type="checkbox" data-labelauty="I have read the privacy policy." checked /></span>
 								<button type="button" class="btn btn-default button-form">Sign in</button>
 							</div>
-						</div><!-- ./sign-in -->
+						</div>./sign-in
 						<div id="setting" class="box">
 							<h2 class="title">Setting profile</h2>
 							<h3 class="sub-title">Please note: You won't be able to change your name within the next 60 days. Make sure that you don't add any unusual capitalisation, punctuation, characters or random words. <a href="#">Learn more</a>.</h3>
@@ -361,7 +436,7 @@
 								<button type="button" class="btn btn-reverse button-form">Cancel</button>
 								<button type="button" class="btn btn-default button-form">Update</button>
 							</div>
-						</div><!-- ./recovery -->
+						</div>./recovery
 						<div id="recovery" class="box">
 							<h2 class="title">Need a new password?</h2>
 							<h3 class="sub-title">Enter your email address, and we’ll email you instructions to reset your password.</h3>
@@ -372,12 +447,12 @@
 							<div class="field footer-form text-right">
 								<button type="button" class="btn btn-default button-form">Recovery</button>
 							</div>
-						</div><!-- ./recovery -->
-					</form><!-- ./form-container -->
-				</div><!-- ./login-button-container -->
-			</div><!-- /.modal-dialog -->
-		</div><!-- /.modal -->
-
+						</div>./recovery
+					</form>./form-container
+				</div>./login-button-container
+			</div>/.modal-dialog
+		</div>/.modal
+ -->
 <!--  여기까지  -->
 
 		<div class="modal fade" id="modal-contact" tabindex="-1" role="dialog" aria-hidden="true">
