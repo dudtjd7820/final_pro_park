@@ -10,6 +10,7 @@
 		<typeAlias alias="PaymentVO" type="park.VO.PaymentVO"/>
 		<typeAlias alias="RealTimeVO" type="park.VO.RealTimeVO"/>
 		<typeAlias alias="ReserveVO" type="park.VO.ReserveVO"/>
+		<typeAlias alias="UseRecordVO" type="park.VO.UseRecordVO"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="park/mapper/test.xml"/>

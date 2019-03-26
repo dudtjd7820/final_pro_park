@@ -94,10 +94,10 @@
 						<li class="has_submenu">
 							<a href="#">사용자메뉴</a>
 							<ul>
-								<li><a class="has_submenu">나의정보</a></li>
-								<li><a class="has_submenu">사용이력</a></li>
-								<li><a class="has_submenu">1:1 문의내역</a></li>
-								<li><a class="has_submenu">내가쓴글</a></li>
+								<li><a href="../member/myInfo.park">나의정보</a></li>
+								<li><a href="../member/useHistory.park">사용이력</a></li>
+								<li><a href="new-property.html">1:1 문의내역</a></li>
+								<li><a href="new-property.html">내가쓴글</a></li>
 							</ul>
 						</li>
 						
@@ -142,9 +142,9 @@
 		
 	</div><!-- /#page-container -->
 
-	<script	src="../../../resources/prohome/script/jquery.min.js"></script>		<!-- jQuery	(necessary for Bootstrap's JavaScript plugins) -->
-	<script	src="../../../resources/prohome/script/jquery-ui.min.js"></script>		<!-- jQuery	UI is a	curated	set	of user	interface interactions,	effects, widgets, and themes -->
-	<script	src="../../../resources/prohome/script/bootstrap.min.js"></script>		<!-- Include all compiled plugins (below), or include individual files as needed -->
+<!-- 	<script	src="../../../resources/prohome/script/jquery.min.js"></script>		jQuery	(necessary for Bootstrap's JavaScript plugins) -->
+<!-- 	<script	src="../../../resources/prohome/script/jquery-ui.min.js"></script>		jQuery	UI is a	curated	set	of user	interface interactions,	effects, widgets, and themes -->
+<!-- 	<script	src="../../../resources/prohome/script/bootstrap.min.js"></script>		Include all compiled plugins (below), or include individual files as needed -->
 
 	<script	src="../../../resources/prohome/script/vendor/mmenu/mmenu.min.all.js"></script>					<!-- Menu Responsive -->
 	<script	src="../../../resources/prohome/script/vendor/animation-wow/wow.min.js"></script>					<!-- Animate Script	-->
@@ -156,10 +156,10 @@
 	<script	src="../../../resources/prohome/script/vendor/noui-slider/nouislider.all.min.js"></script>				<!-- Range Slider -->
 	<script	src="../../../resources/prohome/script/vendor/carousel/responsiveCarousel.min.js"></script>		<!-- Carousel Script -->
 
-	<script	src="http://maps.google.com/maps/api/js?sensor=false"></script>			<!-- Google Map -->
-	<script	src="../../../resources/prohome/script/vendor/maps/infobox.js"></script>							<!-- InfoBox extends the Google Maps JavaScript API V3 -->
-	<script	src="../../../resources/prohome/script/vendor/maps/home-maps.js"></script>							<!-- Custtom Map Color / Box Property -->
-	<script	src="../../../resources/prohome/script/vendor/maps/markerclusterer.js"></script>					<!-- The library creates and manages per-zoom-level clusters for large amounts of markers -->
+<!-- 	<script	src="http://maps.google.com/maps/api/js?sensor=false"></script>			Google Map -->
+<!-- 	<script	src="../../../resources/prohome/script/vendor/maps/infobox.js"></script>							InfoBox extends the Google Maps JavaScript API V3 -->
+<!-- 	<script	src="../../../resources/prohome/script/vendor/maps/home-maps.js"></script>							Custtom Map Color / Box Property -->
+<!-- 	<script	src="../../../resources/prohome/script/vendor/maps/markerclusterer.js"></script>					The library creates and manages per-zoom-level clusters for large amounts of markers -->
 
 	<script	src="../../../resources/prohome/script/custom.js"></script>		<!-- Custom	Script -->
 

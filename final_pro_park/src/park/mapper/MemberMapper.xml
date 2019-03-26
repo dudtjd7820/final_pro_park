@@ -4,7 +4,12 @@
 
 
 <!-- 영은 -->
-
+	<select id="useList" parameterType="park.VO.UseRecordVO" resultType="park.VO.UseRecordVO">
+		select ur.ur_parking_lot_location , ur.ur_parking_lot_name , ccw.cc_hp 
+		    from  use_record ur, coalition_company_web ccw
+		    where ur.ur_parking_lot_location = ccw.cc_building_address
+		    order by ur.start_time
+	</select>
 <!-- 영은 -->
 
 
