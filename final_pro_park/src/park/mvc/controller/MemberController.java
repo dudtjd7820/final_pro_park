@@ -1,13 +1,11 @@
 package park.mvc.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,21 +47,33 @@ public class MemberController {
 	 * @return mav
 	 *********************************************************************************/
 	@GetMapping("/useHistory")
-	public ModelAndView useHistory (@ModelAttribute UseRecordVO urVO) {
+	public ModelAndView useHistory (@ModelAttribute UseRecordVO urVO, Model model) {
 		logger.info("useHistory 호출");
 		ModelAndView mav = new ModelAndView();	
 		mav.setViewName("prohome/userPage/userMenu/useHistory");
+		
+		List<UseRecordVO> useList = null;
+		useList = memberLogic.useList(urVO);
+		String ur_parking_lot_location = useList.get(0).getUr_parking_lot_location();
+		logger.info("ur_parking_lot_location : "+ur_parking_lot_location);
+		model.addAttribute("useList", useList);
+		model.addAttribute("ur_parking_lot_location", ur_parking_lot_location);
+		
 		return mav;
 	}
 	
-	@GetMapping("/useList")
-	@ResponseBody
-	public List<UseRecordVO> useList(@ModelAttribute UseRecordVO urVO) {
-		logger.info("useList 호출 성공");
-		List<UseRecordVO> useList = null;
-		useList = memberLogic.useList(urVO);
-		return useList;
-	} 
+//	@GetMapping("/useList")
+//	@ResponseBody
+//	public void useList(@ModelAttribute UseRecordVO urVO, Model model) {
+//		logger.info("useList 호출 성공");
+//		List<UseRecordVO> useList = null;
+//		useList = memberLogic.useList(urVO);
+//		String ur_parking_lot_location = useList.get(0).getUr_parking_lot_location();
+//		logger.info("ur_parking_lot_location : "+ur_parking_lot_location);
+//		model.addAttribute("useList", useList);
+//		model.addAttribute("ur_parking_lot_location", ur_parking_lot_location);
+////		return useList;
+//	} 
 	
 	
 //	<!-------------------------- 영은 끝 -------------------------->

@@ -1,13 +1,50 @@
+<%@page import="org.json.simple.JSONValue"%>
+<%@page import="com.google.gson.JsonArray"%>
+<%@page import="com.google.gson.JsonObject"%>
+<%@page import="org.json.simple.*"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.List, java.util.Map" %>
+<%@ page import="java.util.List, java.util.Map, park.VO.UseRecordVO" %>
+
+	
+
+
+
 <%
 // 	List<Map<String,Object>> useList = (List<Map<String,Object>>)request.getAttribute("useList");
 // 	int size = 0;
 // 	if(useList != null){
 // 		size = useList.size();
 // 	}
+
+ 	String ur_parking_lot_location = request.getParameter("ur_parking_lot_location");
+	
+
+
+	JSONObject jsonObject = new JSONObject();
+	jsonObject.put("ur_parking_lot_location", request.getParameter("ur_parking_lot_location"));
+	
+	JsonArray jsonArray = new JsonArray();
+	
+	JSONObject school = new JSONObject();
+	school.put("subject1", "math");
+	school.put("subject2", "korean");
+
+	
+// 	jsonArray.add(jsonObject);
+// 	jsonObject.put("useArray", jsonArray);
+
+	
+// 	String useString = request.getParameter("useList");
+// 	out.print(useString);
+// 	jsonArray = (JsonArray)JSONValue.parse(useString);
+	
+	
+
+	
 %>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -31,26 +68,35 @@
   
   <script type="text/javascript">
 	$(document).ready(function(){
-		alert("ready")
-		//등록날짜 정보를 선택했을 때
-		$('#usehis').show({
-			method:"get"
-		   ,url:"useList.park"
-		});
+		alert("ready");
+		hisList();
+// 		$('#usehisV').on({
+// 			alert("usehis실행")
+// 			method:"get"
+// 		   ,url:"useList.park"
+// 		});
+
+		var data = {
+ 	        ur_parking_lot_location: <%=ur_parking_lot_location %>
+	    	, Name: "SooYoung"
+	    	, Age: "27"
+	    }
+		var person = JSON.stringify(data);
+	    var oPerson = JSON.parse(person);
+		alert(person);
+		alert(oPerson);
+
 		
-		$('#home').click(function (e) {
-	 		  e.preventDefault()
-	 		  $(this).tab('show')
-	 	});
  	});
 
  	function hisList(){
- 		$("#usehis").attr("method","get"); //첨부파일을 하려면 post로 해야하지만 일단 테스트를 위해 get으로 한다.
-		$("#usehis").attr("action","/useList.park");
-		$("#usehis").submit();
-		$('#myModal').modal()                      // initialized with defaults
-		$('#myModal').modal({ keyboard: false })   // initialized with no keyboard
-		$('#myModal').modal('show') 
+//  		alert("hisList 호출")
+ 		$("#usehisT").attr("method","get"); //첨부파일을 하려면 post로 해야하지만 일단 테스트를 위해 get으로 한다.
+//  		alert("method 실행")
+		$("#usehisT").attr("action","useList.park");
+//  		alert("action 실행")
+		$("#usehisT").submit();
+//  		alert("submit 실행")
  	}
 
  	
@@ -147,7 +193,7 @@
 						
 						
 						<div class="table-responsive description">
-							<table id="usehis" class="table">
+							<table id="usehisT" class="table">
 							  <thead>
 <div class="section-title line-style no-margin">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -192,8 +238,8 @@
 							  
 								<tr>
 									<td>1</td>
-									<td id="usehis" colspan="2" name="addr"></td>
-<%-- 									<td colspan="2"><%=rMap.get("BM_NO") %></td> --%>
+<!-- 									<td id="usehis" colspan="2" value="usehisV"></td> -->
+									<td colspan="2"><%="ur_parking_lot_location" %></td>
 									<td>우리주차장6</td>
 									<td> </td>
 									<td>2019-01-13</td>
@@ -309,13 +355,23 @@
 				<div class="row">
 					<div class="col-md-9 col-md-offset-3 text-left">
 						<ul class="pagination">
+						<li>
+					      <a href="#" aria-label="Previous">
+					        <span aria-hidden="true">&laquo;</span>
+					      </a>
+					    </li>
 							<li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
-							<li><a class="active" href="#">1</a></li>
+							<li><a href="#">1</a></li>
 							<li><a href="#">2</a></li>
 							<li><a href="#">3</a></li>
 							<li><a class="no-active">...</a></li>
 							<li><a href="#">9</a></li>
 							<li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
+							<li>
+						      <a href="#" aria-label="Next">
+						        <span aria-hidden="true">&raquo;</span>
+						      </a>
+						    </li>
 						</ul>
 					</div>
 				</div>

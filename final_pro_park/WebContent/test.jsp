@@ -3,6 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
@@ -16,10 +19,25 @@
 <body>
 test
 
-<select id="selectBox" onchange="changeFunc(value);">
-   <option value="1">Option #1</option>
-   <option value="2">Option #2</option>
-</select>
+<nav>
+  <ul class="pagination">
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
   
 </body>
 </html>
