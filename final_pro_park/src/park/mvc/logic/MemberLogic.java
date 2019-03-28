@@ -32,6 +32,14 @@ public class MemberLogic {
 		return useList;
 	}
 
+
+	public List<Map<String, Object>> usemapList(UseRecordVO urVO) {
+		logger.info("usemapList 호출 성공");
+		List<Map<String, Object>> usemapList = null;
+		usemapList = memberDao.usemapList(urVO);
+		return usemapList;
+	}
+
 //	<!-- 영은 -->
 //
 //

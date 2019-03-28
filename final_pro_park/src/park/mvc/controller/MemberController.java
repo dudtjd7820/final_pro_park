@@ -1,6 +1,7 @@
 package park.mvc.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import park.VO.UseRecordVO;
@@ -51,13 +51,22 @@ public class MemberController {
 		logger.info("useHistory 호출");
 		ModelAndView mav = new ModelAndView();	
 		mav.setViewName("prohome/userPage/userMenu/useHistory");
-		
+		//json
 		List<UseRecordVO> useList = null;
 		useList = memberLogic.useList(urVO);
+		//map
+		List<Map<String,Object>> usemapList = null;
+		usemapList = memberLogic.usemapList(urVO);
 		String ur_parking_lot_location = useList.get(0).getUr_parking_lot_location();
+		logger.info("ur_parking_lot_name : "+useList.get(0).getUr_parking_lot_name());
+		logger.info("ur_consumption_time : "+useList.get(0).getUr_consumption_time());
 		logger.info("ur_parking_lot_location : "+ur_parking_lot_location);
+		logger.info("cc_hp : "+useList.get(0).getCc_hp());
+		//json
 		model.addAttribute("useList", useList);
 		model.addAttribute("ur_parking_lot_location", ur_parking_lot_location);
+		//map
+		model.addAttribute("usemapList", usemapList);
 		
 		return mav;
 	}

@@ -16,7 +16,7 @@ import park.VO.UseRecordVO;
 public class MemberDao {
 
 	
-	Logger logger = Logger.getLogger(test_Dao.class);
+	Logger logger = Logger.getLogger(MemberDao.class);
 	
 	
 	@Autowired
@@ -41,6 +41,23 @@ public class MemberDao {
 			e.printStackTrace();
 		}
 		return useList;
+	}
+
+
+
+
+	public List<Map<String, Object>> usemapList(UseRecordVO urVO) {
+		logger.info("usemapList 호출 성공");
+		//NullPointerException의 대상이 되는 클래스 이므로 인스턴스화를 완성함.
+		//주의사항 : myBatis에서 자동으로 Map담아주는데 이 때 키값은 대문자가 디폴트값.
+		List<Map<String, Object>> usemapList = new ArrayList<Map<String, Object>>();
+		try {
+			usemapList = sqlSessionTemplate.selectList("usemapList", urVO);
+			logger.info("size:"+usemapList.size());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return usemapList;
 	}
 	
 //	<!-- 영은 -->

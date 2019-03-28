@@ -5,45 +5,33 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.List, java.util.Map, park.VO.UseRecordVO" %>
+<%@ page import="java.util.List, java.util.Map, park.VO.UseRecordVO, java.util.StringTokenizer" %>
 
 	
 
 
 
 <%
-// 	List<Map<String,Object>> useList = (List<Map<String,Object>>)request.getAttribute("useList");
-// 	int size = 0;
-// 	if(useList != null){
-// 		size = useList.size();
-// 	}
-
- 	String ur_parking_lot_location = request.getParameter("ur_parking_lot_location");
 	
-
-
-	JSONObject jsonObject = new JSONObject();
-	jsonObject.put("ur_parking_lot_location", request.getParameter("ur_parking_lot_location"));
-	
-	JsonArray jsonArray = new JsonArray();
-	
-	JSONObject school = new JSONObject();
-	school.put("subject1", "math");
-	school.put("subject2", "korean");
-
-	
-// 	jsonArray.add(jsonObject);
-// 	jsonObject.put("useArray", jsonArray);
-
-	
-// 	String useString = request.getParameter("useList");
-// 	out.print(useString);
-// 	jsonArray = (JsonArray)JSONValue.parse(useString);
-	
-	
-
-	
+	List<Map<String,Object>> usemapList = (List<Map<String,Object>>)request.getAttribute("usemapList");
+	int size = 0;
+	if(usemapList != null){
+		size = usemapList.size();
+	}
+	Map<String,Object> rrMap = null;
+	String consumption_time = "";
+	int count = 0;
+	if(size != 0){
+		for(int i=0; i<size; i++){
+			if(i == size) break;
+			rrMap = usemapList.get(i);
+			consumption_time = (String)rrMap.get("UR_CONSUMPTION_TIME");
+			count = Integer.parseInt(consumption_time);
+		}
+		count = Integer.parseInt(consumption_time)+count;
+	}
 %>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -70,24 +58,19 @@
 	$(document).ready(function(){
 		alert("ready");
 		hisList();
-// 		$('#usehisV').on({
-// 			alert("usehis실행")
-// 			method:"get"
-// 		   ,url:"useList.park"
-// 		});
 
-		var data = {
- 	        ur_parking_lot_location: <%=ur_parking_lot_location %>
-	    	, Name: "SooYoung"
-	    	, Age: "27"
-	    }
-		var person = JSON.stringify(data);
-	    var oPerson = JSON.parse(person);
-		alert(person);
-		alert(oPerson);
+// 		var data = {
+<%--  	        ur_parking_lot_location: <%=jObj %> --%>
+// 	    	, Name: "SooYoung"
+// 	    	, Age: "27"
+// 	    }
+// 		var person = JSON.stringify(data);
+// 	    var oPerson = JSON.parse(person);
+// 		alert(person);
+// 		alert(oPerson);
 
 		
- 	});
+//  	});
 
  	function hisList(){
 //  		alert("hisList 호출")
@@ -220,129 +203,46 @@
 							  <tbody>
 							  
 <%
-// 	if(size == 0){
+	if(size == 0){
 %>		       
 <!-- 		       <tr> -->
 <!-- 		       	<td rowspan="6">조회결과가 없습니다.</td> -->
 <!-- 		       </tr> -->
 <%
-// 	}
-// 	else if(size > 0){
-// 		for(int i=0; i<size; i++){
-// 			if(i == size) break;
-// 			Map<String,Object> rMap = useList.get(i);
+	}
+	else if(size > 0){
+		StringTokenizer st = null;
+		for(int i=0; i<size; i++){
+			if(i == size) break;
+			Map<String,Object>rMap = usemapList.get(i);
+			st = new StringTokenizer(rMap.get("START_TIME").toString(),"/");
+			String useTime = st.nextToken();
 %>
 							  
-							  
-							  
-							  
 								<tr>
 									<td>1</td>
-<!-- 									<td id="usehis" colspan="2" value="usehisV"></td> -->
-									<td colspan="2"><%="ur_parking_lot_location" %></td>
-									<td>우리주차장6</td>
+									<td colspan="2"><%=rMap.get("UR_PARKING_LOT_LOCATION") %></td>
+									<td><%=rMap.get("UR_PARKING_LOT_NAME") %></td>
 									<td> </td>
-									<td>2019-01-13</td>
+									<td><%=useTime %></td>
 									<td> </td>
-									<td class="text-right">02-521-4253</td>
+									<td class="text-right"><%=rMap.get("CC_HP") %></td>
 								</tr>
-								
 								
 <%
-// 		}
-// 	}
-%>	
-								<tr>
-									<td>2</td>
-									<td colspan="2">There are many variations of passages of Lorem Ipsum available</td>
-									<td>6</td>
-									<td> </td>
-									<td>$200,00</td>
-									<td> </td>
-									<td class="text-right">$1200,00</td>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td colspan="2">Lorem ipsum dolor sit amet</td>
-									<td>1</td>
-									<td> </td>
-									<td>$1240,50</td>
-									<td> </td>
-									<td class="text-right">$1240,50</td>
-								</tr>
-								<tr>
-									<td>4</td>
-									<td colspan="2">Lorem ipsum dolor sit amet</td>
-									<td>1</td>
-									<td> </td>
-									<td>$1240,50</td>
-									<td> </td>
-									<td class="text-right">$1240,50</td>
-								</tr>
-								<tr>
-									<td>5</td>
-									<td colspan="2">Lorem ipsum dolor sit amet</td>
-									<td>1</td>
-									<td> </td>
-									<td>$1240,50</td>
-									<td> </td>
-									<td class="text-right">$1240,50</td>
-								</tr>
-								<tr>
-									<td>6</td>
-									<td colspan="2">Lorem ipsum dolor sit amet</td>
-									<td>1</td>
-									<td> </td>
-									<td>$1240,50</td>
-									<td> </td>
-									<td class="text-right">$1240,50</td>
-								</tr>
-								<tr>
-									<td>7</td>
-									<td colspan="2">Lorem ipsum dolor sit amet</td>
-									<td>1</td>
-									<td> </td>
-									<td>$1240,50</td>
-									<td> </td>
-									<td class="text-right">$1240,50</td>
-								</tr>
-								<tr>
-									<td>8</td>
-									<td colspan="2">Lorem ipsum dolor sit amet</td>
-									<td>1</td>
-									<td> </td>
-									<td>$1240,50</td>
-									<td> </td>
-									<td class="text-right">$1240,50</td>
-								</tr>
-								<tr>
-									<td>9</td>
-									<td colspan="2">Lorem ipsum dolor sit amet</td>
-									<td>1</td>
-									<td> </td>
-									<td>$1240,50</td>
-									<td> </td>
-									<td class="text-right">$1240,50</td>
-								</tr>
-								<tr>
-									<td>10</td>
-									<td colspan="2">Lorem ipsum dolor sit amet</td>
-									<td>1</td>
-									<td> </td>
-									<td>$1240,50</td>
-									<td> </td>
-									<td class="text-right">$1240,50</td>
-								</tr>
-								
+		}
+	}
+%>						
+
 								<tr>
 									<td>&nbsp;&nbsp;</td>
 									<td colspan="5" class="text-right">총 이용 건수</td>
-									<td colspan="2" class="text-right">10</td>
+									<td colspan="2" class="text-right"><%=size %></td>
 								</tr>
 								<tr>
 									<td>&nbsp;&nbsp;</td>
-									<td colspan="5" class="footer-invoice">총 사용 포인트</td>
-									<td colspan="2" class="footer-invoice">2153</td>
+									<td colspan="5" class="footer-invoice">총 사용 시간</td>
+									<td colspan="2" class="footer-invoice"><%=count %></td>
 								</tr>
 								
 							  </tbody>
