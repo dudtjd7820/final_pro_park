@@ -1,5 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   
+   <%@ page import="java.util.List,park.VO.ReserveVO" %>    
+   
+    <%
+    List<ReserveVO> reserveList  = (List<ReserveVO>)request.getAttribute("reserveList");
+    int size =0;
+    if (reserveList!= null){
+    	size = reserveList.size();
+    }
+    %>
+        
+    
+    
+    
+    
 <!DOCTYPE html>
 <head>
 
@@ -49,41 +64,63 @@
 					<div class="col-sm-8 col-md-9">
 					<!--  여기가 센터 -->
 						<div class="row">
-					나의예약이력 (현제 예약중인 )
- <table id="reserv" class="easyui-datagrid"  style="width:800px; height:300px;"
-  data-options="url:'datagrid_data.json',fitColumns:true,singleSelect:true">>
+					
+					님의예약이력 (현제 예약중인 )
+ <table id="reservation_t" class="easyui-datagrid"  style="width:800px; height:300px;">
     <thead>
         <tr>
-            <th data-options="field:'rrtt_expected_start_time',width:200">사용일 -시간</th>
-            <th data-options="field:'rrtt_expected_end_time',width:200">종료일 -시간</th>
-            <th data-options="field:'rrtt_parking_lot_name',width:200">시용지점</th>
-            <th data-options="field:'rrtt_parking_lot_location',width:100">지역</th>
-            <th data-options="field:'차감시간',width:100">차감예상시간</th>
+         	<th data-options="field:'rrtt_number',width:150">예약번호</th>
+            <th data-options="field:'rrtt_expected_start_time',width:150">사용일 -시간</th>
+            <th data-options="field:'rrtt_expected_end_time',width:150">종료일 -시간</th>
+            <th data-options="field:'rrtt_parking_lot_name',width:100">시용지점</th>
+            <th data-options="field:'rrtt_parking_lot_location',width:200">지역</th>
         </tr>
     </thead>
     <tbody>
+    <%
+	if(size==0){
+	%>
         <tr>
-            <td>001</td><td>name1</td><td>2323</td>
-        </tr>
-        <tr>
-            <td>002</td><td>name2</td><td>4612</td>
-        </tr>
+				<td rowspan="6">조회결과가 없습니다.</td>
+			</tr> 
+<%
+	}
+	else if (size>0){
+		for ( int i=0; i<size; i++){
+		ReserveVO reserveVO= reserveList.get(i);
+%>
+<tr>
+				<td><%=reserveVO.getrrtt_number() %></td>
+				<td><%=reserveVO.getRrtt_expected_start_time() %></td>
+				<td><%=reserveVO.getRrtt_expected_end_time() %></td>
+				<td><%=reserveVO.getRrtt_parking_lot_name() %></td>
+				<td><%=reserveVO.getRrtt_parking_lot_location()%></td>
+			</tr>       
+<%
+		}//////////////end of for
+	}
+%>
+
+			
     </tbody>
 </table> 
 
 <script type="text/javascript">
 
 function getSelections(){
-	var ids = [];
-	var rows = $('#reserv').datagrid('getSelections');
-	for(var i=0;i<rows.length;i++){
-		ids.push(rows[i].rrtt_expected_start_time);
-		ids.push(rows[i].rrtt_expected_end_time);
-		ids.push(rows[i].rrtt_parking_lot_name);
-		ids.push(rows[i].rrtt_parking_lot_location);
-		var reserv=ids[1];
-		alert(reserv);
-	}
+	 var row = $('#reservation_t').datagrid('getSelected');
+	 var data;
+	     if (row){
+        
+			data = row.rrtt_number +" &nbsp; "+ row.rrtt_parking_lot_name +" &nbsp; "+ row.rrtt_parking_lot_location
+			+"<br>"+" 예약시간 : "+ row.rrtt_expected_start_time
+			+"<br>"+" 종료시간 : "+ row.rrtt_expected_end_time;
+     	}
+	     	$('#data').empty();
+	     $('#data').append(data);	
+
+	     	$('#data2').empty();
+		     $('#data2').append(data);	
 }
 </script>
 
@@ -92,6 +129,9 @@ function getSelections(){
 <button onclick="getSelections()" id="btn" type="button" class="btn btn-default" data-toggle="modal" data-target="#upd-Modal" color=>
   예약 수정
 </button>
+
+
+
 <!-- Modal -->
 <div class="modal fade" id="upd-Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -101,13 +141,12 @@ function getSelections(){
         <h4 class="modal-title" id="myModalLabel">예약 시간변경 </h4>
       </div>
       <div class="modal-body">
-      
-      <script type="text/javascript">
-      document.write(reserv);
-      out.print(reserv);
-      </script>
-        여기 다 선택한 로우의 내용표시
-        
+     
+        <div id="data">
+        	
+        </div>
+        해당 예약의 변경시간을 선택하세요 
+     
      <br>
         변경할 시작시간
         <input class="easyui-datetimebox" name="birthday" 
@@ -128,9 +167,17 @@ function getSelections(){
   </div>
 </div>
 
-<button onclick="" type="button" class="btn btn-default" data-toggle="modal" data-target="#del-Modal" color="Red">
+<button onclick="getSelections()" type="button" class="btn btn-default" data-toggle="modal" data-target="#del-Modal" color="Red">
   예약 삭제
 </button>
+
+<script type="text/javascript">
+function delreserv(){
+	
+}
+</script>
+
+
 <!-- Modal -->
 <div class="modal fade" id="del-Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -140,11 +187,12 @@ function getSelections(){
         <h4 class="modal-title" id="myModalLabel">예약 삭제 취소</h4>
       </div>
       <div class="modal-body">
-      여기서 데이터 테이블 에서 가져온값을 뛰운다 .
+      <div id="data2"></div>
       <br>
       이예약을 취소하기겠습니까?
       
       </div>
+      
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">삭제하기</button>
         <button type="button" class="btn btn-primary">창닫기</button>
@@ -158,7 +206,7 @@ function getSelections(){
 <br>	
 <br>		
 나의예약이력 (종료된 모든 )
- <table id="reserv" class="easyui-datagrid"  style="width:800px; height:300px;"
+ <table id="reservation end" class="easyui-datagrid"  style="width:800px; height:300px;"
   data-options="url:'datagrid_data.json',fitColumns:true,singleSelect:true">>
     <thead>
         <tr>
@@ -171,7 +219,7 @@ function getSelections(){
     </thead>
     <tbody>
         <tr>
-            <td>001</td><td>name1</td><td>2323</td>
+            <td></td><td>name1</td><td>2323</td>
         </tr>
         <tr>
             <td>002</td><td>name2</td><td>4612</td>
@@ -181,7 +229,6 @@ function getSelections(){
 
 
 
-<input type="button" onclick="getSelections()" value="안녕" />
 
 							
 							
@@ -208,6 +255,9 @@ function getSelections(){
 						<!-- ===================== SEARCH ===================== -->
 						 
 						<script type="text/javascript">
+						
+						
+						
 								function setfilter(){
 									var f_loc = $("#select_loc option:selected").val();
 									$("#filter_loc").text(f_loc);
@@ -227,9 +277,16 @@ function getSelections(){
 									var f_endtime = $ ( '#select_endtime'). datetimebox ( 'getValue');
 									$("#filter_endtime").text("사용종료시간 : "+f_endtime);
 
+									 var startDate = new Date(f_starttime);
+									 var endDate  = new Date(f_endtime);
 
+									 var tmp = (endDate.getTime() - startDate.getTime()) / 60000;
+									 var hour = Math.ceil(tmp/60) ;
+									 var min = Math.ceil(tmp%60);
 
-									
+									 var time = " 예약사용시간 : " + hour +" 시간 "+ min + " 분 "
+									 
+									 $("#usetime").text(time);
 									}
 
 								</script>
@@ -292,44 +349,129 @@ function getSelections(){
 								
 								
 								<div class="col-md-12 space-div">
-								<input id="select_starttime" class="easyui-datetimebox" name="birthday" 
+								<input id="select_starttime" class="easyui-datetimebox" name="" 
         data-options="required:true,showSeconds:false" value="" style="width:150px">
         <label>-- 시작날짜 시간--</label>
 								
-									<!-- <select class="dropdown">
-										<option value="">-- 시작날짜 시간--</option>
-										<option value="Normal">Normal</option>
-										<option value="Available">Available</option>
-										<option value="Not Available">Not Available</option>
-										<option value="Sold">Sold</option>
-										<option value="Open House">Open House</option>
-									</select> -->
+									
 								</div>
 								<div class="col-md-12 space-div">
-								<input id="select_endtime"  class="easyui-datetimebox" name="birthday" 
+								<input id="select_endtime"  class="easyui-datetimebox" name="" 
         data-options="required:true,showSeconds:false" value="" style="width:150px">
          <label>-- 종료날자 시간 --</label>
-									<!-- <select class="dropdown">
-										<option value="">-- 종료날자 시간 --</option>
-										<option value="Normal">Normal</option>
-										<option value="Available">Available</option>
-										<option value="Not Available">Not Available</option>
-										<option value="Sold">Sold</option>
-										<option value="Open House">Open House</option>
-									</select> -->
+         
+          <script>
+        $(function(){
+            $('#select_starttime').datebox().datetimebox('calendar').calendar({
+                validator: function(date){
+                    var now = new Date();
+                    var d1 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+                    var d2 = new Date(now.getFullYear(), now.getMonth(), now.getDate()+5);
+                    return d1<=date && date<=d2;
+                    
+                    
+                }
+            });
+            
+            $('#select_endtime').datebox().datetimebox('calendar').calendar({
+                validator: function(date){
+                    var now = new Date();
+                    var d1 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+                    var d2 = new Date(now.getFullYear(), now.getMonth(), now.getDate()+5);
+                    return d1<=date && date<=d2;
+                    
+                    
+                }
+            });
+            
+        });
+        
+    </script>
+									
+									
 								</div>
 								
 								<div class="col-md-12 space-div">
-									<label>예약사용시간 : 3 hour 30 min</label>
+									<label id="usetime">예약사용시간 : 0 hour 0 min</label>
 									<div class="slider" id="price-range"></div>
 									<div class="price-slider price">
 										<span id="price-value-min"></span> 
 										<span id="price-value-max"></span>					
 									</div>
 								</div>
-								<div class="col-md-12 space-div">
-									<button type="button" class="btn btn-default search-button">예약하기</button>
-								</div><!-- ./footer -->
+								<div  class="col-md-12 space-div">
+								
+								
+								<button onclick="reservaiondata()"  type="button" class="btn btn-default search-button" 
+								data-toggle="modal" data-target="#reservaion-Modal">예약하기</button>
+								
+								</div>
+								
+								<script type="text/javascript">
+							
+								function reservaiondata(){
+									var data3;
+
+									var f_loc = $("#select_loc option:selected").val();
+
+									var f_city = $("#select_city option:selected").val();
+
+									var f_gu = $("#select_gu option:selected").val();
+
+									var f_point = $("#select_point option:selected").val();
+
+									var f_starttime = $ ( '#select_starttime'). datetimebox ( 'getValue');
+
+									var f_endtime = $ ( '#select_endtime'). datetimebox ( 'getValue');
+
+									 var startDate = new Date(f_starttime);
+									 var endDate  = new Date(f_endtime);
+
+									 var tmp = (endDate.getTime() - startDate.getTime()) / 60000;
+									 var hour = Math.ceil(tmp/60) ;
+									 var min = Math.ceil(tmp%60);
+
+									 var time = " 예약사용시간 : " + hour +" 시간 "+ min + " 분 "
+
+									 data3 = f_loc + f_city + f_gu + f_point +"<br>"+ f_starttime +"<br>"+ f_endtime + "<br>" + time ;
+
+									$('#data3').empty();
+							     	$('#data3').append(data3);	
+							     
+									}
+								</script>
+								
+								<!-- Modal -->
+<div class="modal fade" id="reservaion-Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        
+        <h4 class="modal-title" id="myModalLabel"> 예약 확인 .</h4>
+      </div>
+      <div class="modal-body">
+      
+      
+      <br>
+       이대로 예약 하시겠습니까 ?
+      <div id="data3"></div>
+      
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">예약</button>
+        <button type="button" class="btn btn-primary">창닫기</button>
+      </div>
+    </div>
+  </div>
+  여긴몰까요 ?
+</div>
+								
+								
+								
+								<!-- ./footer -->
+								
 							</div><!-- ./row 2 -->	
 						</div><!-- ./vertical-search-container -->	
 
@@ -357,103 +499,7 @@ function getSelections(){
 
 
 		<%@ include file ="../common/bottom.jsp" %>
-<!--  헤더부분 에 들어있음 . footer 부분자름 -->
-<!-- 
-		<div class="modal fade login-modal" tabindex="-1" role="dialog" aria-hidden="true">
-			<div class="modal-dialog">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-close"></i></button>
-				<div class="login-button-container">
-					<a href="#" data-section="login"><i class="fa fa-user"></i></a>
-					<a href="#" data-section="sign-in"><i class="fa fa-pencil-square-o"></i></a>
-					<a href="#" data-section="recovery"><i class="fa fa-lock"></i></a>
-					<a href="#" data-section="setting"><i class="fa fa-cog"></i></a>
-				</div>./login-button-container
-				<div class="form-container">
-					<form method="post" action="#">
-						<div id="login" class="box">
-							<h2 class="title">Login in to your account</h2>
-							<h3 class="sub-title">It is a breach of our terms and conditions to provide username and password details to unauthorised third parties. Unauthorised use may lead to suspension or termination.</h3>
-							<div class="field">
-								<input id="user-log" name="user-log" class="form-control" type="text" placeholder="Username or email">
-								<i class="fa fa-user user"></i>
-							</div>
-							<div class="field">
-								<input id="password-log" name="password-log" class="form-control" type="password" placeholder="Password">
-								<i class="fa fa-ellipsis-h"></i>
-							</div>
-							<div class="field footer-form text-right">
-								<span class="remember"><input class="labelauty" type="checkbox" data-labelauty="Keep me signed in" checked /></span>
-								<button type="button" class="btn btn-reverse button-form">Reset</button>
-								<button type="button" class="btn btn-default button-form">Login</button>
-							</div>
-						</div> ./login
-						<div id="sign-in" class="box">
-							<h2 class="title">Sign In</h2>
-							<h3 class="sub-title">Create a Free account and discover how you can centralize all communication around a transaction, connect with clients, market your listings, and more. </h3>
-							<div class="form-inline">
-								<div class="form-group">
-									<input id="user-sign" name="user-sign" class="form-control input-inline margin-right" type="text" placeholder="Username">
-									<i class="fa fa-user user"></i>
-								</div>
-								<div class="form-group">
-									<input id="email-sign" class="form-control input-inline" type="text" name="email-sign" placeholder="Email">
-									<i class="fa fa-envelope-o"></i>
-								</div>
-							</div>
-							<div class="field">
-								<input id="password-sign" class="form-control" type="password" name="password-sign" placeholder="Password">
-								<i class="fa fa-ellipsis-h"></i>
-							</div>
-							<div class="field">
-								<input id="re-password-sign" class="form-control" type="password" name="re-password-sign" placeholder="Repeat password">
-								<i class="fa fa-ellipsis-h"></i>
-							</div>
-							<div class="field footer-form text-right">
-								<span class="remember"><input class="labelauty" type="checkbox" data-labelauty="I have read the privacy policy." checked /></span>
-								<button type="button" class="btn btn-default button-form">Sign in</button>
-							</div>
-						</div>./sign-in
-						<div id="setting" class="box">
-							<h2 class="title">Setting profile</h2>
-							<h3 class="sub-title">Please note: You won't be able to change your name within the next 60 days. Make sure that you don't add any unusual capitalisation, punctuation, characters or random words. <a href="#">Learn more</a>.</h3>
-							<div class="field">
-								<input id="username-block" class="form-control" type="text" name="username-block" value="John Doe" disabled>
-								<i class="fa fa-user user"></i>
-							</div>
-							<div class="field">
-								<input id="email-setting" class="form-control" type="text" name="email-setting" value="administrator@prohome.com">
-								<i class="fa fa-envelope-o"></i>
-							</div>
-							<div class="field">
-								<input id="update-pass" class="form-control" type="password" name="update-pass" placeholder="New password">
-								<i class="fa fa-ellipsis-h"></i>
-							</div>
-							<div class="field">
-								<input id="update-repass" class="form-control" type="password" name="update-repass" placeholder="Repeat password">
-								<i class="fa fa-ellipsis-h"></i>
-							</div>
-							<div class="field footer-form text-right">
-								<button type="button" class="btn btn-reverse button-form">Cancel</button>
-								<button type="button" class="btn btn-default button-form">Update</button>
-							</div>
-						</div>./recovery
-						<div id="recovery" class="box">
-							<h2 class="title">Need a new password?</h2>
-							<h3 class="sub-title">Enter your email address, and we’ll email you instructions to reset your password.</h3>
-							<div class="field">
-								<input id="recovery-email" class="form-control" type="text" name="recovery-email" placeholder="Your email">
-								<i class="fa fa-envelope-o"></i>
-							</div>
-							<div class="field footer-form text-right">
-								<button type="button" class="btn btn-default button-form">Recovery</button>
-							</div>
-						</div>./recovery
-					</form>./form-container
-				</div>./login-button-container
-			</div>/.modal-dialog
-		</div>/.modal
- -->
-<!--  여기까지  -->
+
 
 		<div class="modal fade" id="modal-contact" tabindex="-1" role="dialog" aria-hidden="true">
 			<div class="modal-dialog">

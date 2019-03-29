@@ -1,14 +1,20 @@
 package park.mvc.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import park.VO.ReserveVO;
 import park.mvc.dao.MemberDao;
+import park.mvc.logic.MemberLogic;
 
 @Controller
 @RequestMapping(value="member")
@@ -16,6 +22,9 @@ public class MemberController {
 
 	@Autowired
 	MemberDao memberDao = null;
+	
+	@Autowired
+	MemberLogic memberLogic =null;
 	
 	Logger logger = Logger.getLogger(MemberController.class);
 	
@@ -48,10 +57,21 @@ public class MemberController {
 //	<!-- 영성 -->
 	
 	@GetMapping("/reservation")
-	public ModelAndView reservationpage() {
+	public ModelAndView reservationpage(Model m) {
+		
+		String id ="test";
+		
+		List<ReserveVO>  reserveList_ing = memberLogic.getreserveList(id);
+		
+		logger.info("여긴오나요 ?");
+		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("prohome/userPage/reserv/reservation");
 		
+
+		
+		m.addAttribute("reserveList", reserveList_ing);	
+	
 		return mav;
 		
 	}

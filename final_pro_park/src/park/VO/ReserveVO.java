@@ -14,7 +14,7 @@ public class ReserveVO {
 	 private String rrtt_expected_start_time   ="";
 	 private String rrtt_expected_end_time     ="";
 	 private String member_id                  ="";
-	 private String real_time_reserv_number    ="";
+	 private String rrtt_number    ="";
 	 
 	 
 	public String getReserv_time() {
@@ -89,11 +89,11 @@ public class ReserveVO {
 	public void setMember_id(String member_id) {
 		this.member_id = member_id;
 	}
-	public String getReal_time_reserv_number() {
-		return real_time_reserv_number;
+	public String getrrtt_number() {
+		return rrtt_number;
 	}
-	public void setReal_time_reserv_number(String real_time_reserv_number) {
-		this.real_time_reserv_number = real_time_reserv_number;
+	public void setrrtt_number(String rrtt_number) {
+		this.rrtt_number = rrtt_number;
 	} 
 
 }

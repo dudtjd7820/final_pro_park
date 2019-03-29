@@ -29,6 +29,9 @@
 
 <!-- 영성 -->
 
+<select id="getreserv" parameterType="String" resultType="ReserveVO"> select * from reserve_real_time_table where mem_id=#{id} </select>
+
+
 <!-- 영성 -->
 
 
