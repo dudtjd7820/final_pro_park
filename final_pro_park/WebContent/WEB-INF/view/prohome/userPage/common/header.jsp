@@ -58,7 +58,7 @@
 					<div class="row">
 						<a id="mobile-menu-button" href="#mobile-menu" class="visible-xs"><i class="fa fa-bars"></i></a>
 						<div class="col-md-2 logo-withe">
-							<a href="#"><img src="../../../resources/prohome/images/logo_x1_w.png" alt="Logo" /></a>
+							<a href="usermain.park"><img src="../../../resources/prohome/images/logo_x1_w.png" alt="Logo" /></a>
 						</div><!-- /.logo -->
 						<div class="col-md-10 hidden-xs" id="login-pan">
 							<a href="call:1-800-555-1234"><i class="icon fa fa-phone"></i> (011)-8800-555</a>
@@ -123,11 +123,11 @@
 						<li class="current-menu-item has_submenu">
 							<a href="#">고객센터</a>
 							<ul>
-								<li><a href="about.html">아이디/비밀번호 찾기</a></li>	
-								<li><a href="notice.jsp">공지사항</a></li>	
-								<li><a href="about.html">질문게시판</a></li>	
-								<li><a href="about.html">자유게시판</a></li>	
-								<li><a href="about.html">1:1문의</a></li>	
+								<li><a href="id_pw_find.park">아이디/비밀번호 찾기</a></li>	
+								<li><a href="notice.park">공지사항</a></li>	
+								<li><a href="question.park">질문게시판</a></li>	
+								<li><a href="free.park">자유게시판</a></li>	
+								<li><a href="inquiry.park">1:1문의</a></li>	
 								<li><a href="about.html">제휴문의</a></li>	
 							</ul>
 						</li>
@@ -156,7 +156,7 @@
 	<script	src="../../../resources/prohome/script/vendor/noui-slider/nouislider.all.min.js"></script>				<!-- Range Slider -->
 	<script	src="../../../resources/prohome/script/vendor/carousel/responsiveCarousel.min.js"></script>		<!-- Carousel Script -->
 
-	<script	src="http://maps.google.com/maps/api/js?sensor=false"></script>			<!-- Google Map -->
+	<script	src="http://maps.google.com/maps/api/js?sensor=false"></script>		<!--	Google Map -->
 	<script	src="../../../resources/prohome/script/vendor/maps/infobox.js"></script>							<!-- InfoBox extends the Google Maps JavaScript API V3 -->
 	<script	src="../../../resources/prohome/script/vendor/maps/home-maps.js"></script>							<!-- Custtom Map Color / Box Property -->
 	<script	src="../../../resources/prohome/script/vendor/maps/markerclusterer.js"></script>					<!-- The library creates and manages per-zoom-level clusters for large amounts of markers -->

@@ -9,6 +9,8 @@ public class BoardVO {
 	private int  	base_post_number   =0; 
 	private int  	base_view_count    =0; 
 	private String  base_writer        ="";
+	private String 	searchCombo			="";
+	private String 	searchText			="";
 	public String getBase_title() {
 		return base_title;
 	}
@@ -56,5 +58,17 @@ public class BoardVO {
 	}
 	public void setBase_writer(String base_writer) {
 		this.base_writer = base_writer;
+	}
+	public String getSearchCombo() {
+		return searchCombo;
+	}
+	public void setSearchCombo(String searchCombo) {
+		this.searchCombo = searchCombo;
+	}
+	public String getSearchText() {
+		return searchText;
+	}
+	public void setSearchText(String searchText) {
+		this.searchText = searchText;
 	} 
 }

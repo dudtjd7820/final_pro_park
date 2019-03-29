@@ -59,14 +59,14 @@ public class test {
 		return mav;
 	}
 	
-	@GetMapping("userMain")
-	public ModelAndView userMain () {
-		logger.info("userMain 호출");
-		ModelAndView mav = new ModelAndView();	
-		mav.setViewName("prohome/userPage/main");
-		return mav;
-		
-	}
+//	@GetMapping("userMain")
+//	public ModelAndView userMain () {
+//		logger.info("userMain 호출");
+//		ModelAndView mav = new ModelAndView();	
+//		mav.setViewName("prohome/userPage/main");
+//		return mav;
+//		
+//	}
 	
 	@GetMapping("account")
 	public ModelAndView account (@RequestParam("p_id") String p_id , @RequestParam("p_pw") String p_pw) {
