@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import park.VO.MemberVO;
 import park.VO.UseRecordVO;
 
 
@@ -29,23 +30,12 @@ public class MemberDao {
 	
 //	<!-- 영은 --> 
 	
-	public List<UseRecordVO> useList(UseRecordVO urVO) {
-		logger.info("useList 호출 성공");
-		//NullPointerException의 대상이 되는 클래스 이므로 인스턴스화를 완성함.
-		//주의사항 : myBatis에서 자동으로 Map담아주는데 이 때 키값은 대문자가 디폴트값.
-		List<UseRecordVO> useList = new ArrayList<UseRecordVO>();
-		try {
-			useList = sqlSessionTemplate.selectList("useList", urVO);
-			logger.info("size:"+useList.size());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return useList;
-	}
-
-
-
-
+	
+	/********************************************************************************************
+	 * 사용이력 테이블 불러오기 map사용
+	 * @param urVO
+	 * @return
+	 ********************************************************************************************/
 	public List<Map<String, Object>> usemapList(UseRecordVO urVO) {
 		logger.info("usemapList 호출 성공");
 		//NullPointerException의 대상이 되는 클래스 이므로 인스턴스화를 완성함.
@@ -59,6 +49,28 @@ public class MemberDao {
 		}
 		return usemapList;
 	}
+	
+	
+//	//VO리턴타입
+//	public MemberVO memberInfo2(String mem_id) throws Exception{
+//		return sqlSessionTemplate.selectOne("member.memberInfo1",mem_id);
+//	}
+	
+	/******************************************************************************
+	 * 나의정보 불러오기 List<VO>사용
+	 * @param mem_id
+	 * @return
+	 * @throws Exception
+	 ******************************************************************************/
+	public List<MemberVO> memberInfo(String mem_id) throws Exception{
+		return sqlSessionTemplate.selectList("member.memberInfo",mem_id);
+	}
+	
+	
+	public int mem_pwUpd(Map<String, Object> pMap) throws Exception{
+		return sqlSessionTemplate.update("member.mem_pwUpd", pMap);
+	}
+
 	
 //	<!-- 영은 -->
 //

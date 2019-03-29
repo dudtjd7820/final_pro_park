@@ -1,9 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.List, park.VO.MemberVO, java.util.Map"%>
+<%
+	List<MemberVO> memberList = (List<MemberVO>)request.getAttribute("memberList");
+	int size = 0;
+	if(memberList != null){
+		size = memberList.size();
+	}
+	
+	Map<String,Object> rMap = null;
+	
+%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
+<script type="text/javascript">
 
+//비밀번호 수정하기
+	function mem_pwUpdate(){
+		$("#f_pwUpd").attr("method","post");
+		$("#f_pwUpd").attr("action","mem_pwUpd");
+		$("#f_pwUpd").submit();
+	}
+	
+</script>
   </head>
   <body class="fixed-header">
 
@@ -95,35 +115,54 @@
 								</div>
 								<ul class="profile">
 									<li class="disabled">
-										<span>아이디</span> Tremont
-									</li>
-									<li>
-										<span>이름</span> Diane Hayes
-										<i class="icon fa fa-pencil"></i>
-									</li>
-									<li>
-										<span>포인트</span> &bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;
-									</li>
-									<li>
-										<span>등급</span> New York, NY
-									</li>
-									<li>
-										<span>생년월일</span> 18/01/1973 
+<%
+	if(size > 0){
+		MemberVO mVO = memberList.get(0);
+%>
+										<span>아이디</span> 
+										<%=mVO.getMem_id() %>
+<%-- 										${memberInfo.mem_id} --%>
 										<i class="set-privacy fa fa-lock"></i>
 									</li>
 									<li>
-										<span>핸드폰번호</span> Prohome.com agency 
+										<span>이름</span>
+										<%=mVO.getMem_name() %>
+										<i class="set-privacy fa fa-lock"></i>
+									</li>
+									<li>
+										<span>포인트</span>
+										<%=mVO.getMem_point() %>
+										 &bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;
+										 <i class="set-privacy fa fa-lock"></i>
+									</li>
+									<li>
+										<span>등급</span>
+										<%=mVO.getMem_grade() %>
+										<i class="set-privacy fa fa-lock"></i>
+									</li>
+									<li>
+										<span>생년월일</span>
+										<%=mVO.getMem_birthday() %>
+										<i class="set-privacy fa fa-lock"></i>
+									</li>
+									<li>
+										<span>핸드폰번호</span>
+										<%=mVO.getMem_phone() %> 
 										<i class="icon fa fa-pencil"></i>
 									</li>
 									<li>
-										<span>이메일</span> Primary 
+										<span>이메일</span>
+										<%=mVO.getMem_email() %>
 									</li>
 									<li>
-										<span>특이사항</span> Primary 
+										<span>특이사항</span>
+										<%=mVO.getMem_uniqueness() %>
 										<i class="icon fa fa-pencil"></i>
 									</li>
 									<li>
-										<span>가입일자</span> Primary 
+										<span>가입일자</span>
+										<%=mVO.getMem_join_date() %>
+										<i class="set-privacy fa fa-lock"></i>
 									</li>
 									<li class="fullwidth">
 										<span>Short About</span> 
@@ -136,7 +175,7 @@
 									<button type="submit" class="btn btn-default" >Save Changes</button>
 								</div>
 								<div class="section-title line-style">
-									<h3 class="title">Basic Contact</h3>
+									<h3 class="title">추가 정보</h3>
 									<i class="icon fa fa-cog"></i>
 								</div>
 								<ul class="profile">
@@ -157,22 +196,24 @@
 										<i class="set-privacy fa fa-lock"></i>
 									</li>
 								</ul>
-								
+<%
+	}
+%>								
 								<!-- <div class="bs-callout callout-danger">
 									<h4 class="title">Nullam sodales lorem sit amet</h4>
 									<p class="text">Integer euismod cursus dolor. Curamet pellentesque sed, sodales at augue.</p>
 								</div> -->
 								<div class="section-title line-style">
-									<h3 class="title">Change Your Password</h3>
+									<h3 class="title">비밀번호 변경</h3>
 								</div>
-								<form method="post" action="#" class="grey-box">
+								<form id="f_pwUpd" method="post" action="#" class="grey-box">
 									<span class="text">
-										There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration inble. If you are of going.
+										비밀번호를 변경하고싶으시면 쓰세욤
 									</span>
-									<input type="password" class="form-control" id="old-password" name="old-password" placeholder="Old password">
-									<input type="password" class="form-control" id="password" name="password" placeholder="New password">
-									<input type="password" class="form-control" id="re-password" name="re-password" placeholder="Repeat password">
-									<button type="submit" class="btn btn-default">Save Changes</button>								
+									<input type="password" class="form-control" id="old-password" name="old-password" placeholder="현재 비밀번호">
+									<input type="password" class="form-control" id="password" name="password" placeholder="새 비밀번호">
+									<input type="password" class="form-control" id="re-password" name="re-password" placeholder="새 비밀번호 재입력">
+									<button type="submit" class="btn btn-default" onclick="mem_pwUpdate()">Save Changes</button>								
 								</form>
 							</div>
 							<div class="col-md-5">

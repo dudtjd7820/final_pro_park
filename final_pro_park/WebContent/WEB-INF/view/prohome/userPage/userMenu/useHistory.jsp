@@ -12,7 +12,8 @@
 
 
 <%
-	
+	StringTokenizer st = null;
+	String recentTime = null;
 	List<Map<String,Object>> usemapList = (List<Map<String,Object>>)request.getAttribute("usemapList");
 	int size = 0;
 	if(usemapList != null){
@@ -21,14 +22,18 @@
 	Map<String,Object> rrMap = null;
 	String consumption_time = "";
 	int count = 0;
+	int hap = 0;
 	if(size != 0){
 		for(int i=0; i<size; i++){
 			if(i == size) break;
+			count = 0;
 			rrMap = usemapList.get(i);
 			consumption_time = (String)rrMap.get("UR_CONSUMPTION_TIME");
 			count = Integer.parseInt(consumption_time);
+			hap = count+hap;
+			st = new StringTokenizer(rrMap.get("START_TIME").toString(),"/");
+			recentTime = st.nextToken();
 		}
-		count = Integer.parseInt(consumption_time)+count;
 	}
 %>
 
@@ -144,19 +149,18 @@
 							<div class="col-sm-4 col-md-4">
 								<address>
 								  <strong>주차장 이름</strong><br />
-								   열받는주차장
+								   <%=rrMap.get("UR_PARKING_LOT_NAME") %>
 								</address>
 								<address>
 								  <strong>대표번호</strong><br />
-								  <a href="mailto:#">02-312-1818</a>
+								  <a href="mailto:#"><%=rrMap.get("CC_HP") %></a>
 								</address>
 							</div>
 							
 							<div class="col-sm-4 col-md-4">
 								<address>
 								  <strong>주소</strong><br />
-								  795 Folsom Ave, Suite 600<br />
-								  San Francisco, CA 94107<br />
+								  <%=rrMap.get("UR_PARKING_LOT_LOCATION") %>
 								</address>
 							</div>
 							
@@ -165,7 +169,7 @@
 								  <div class="form-group">
 									<label class="col-sm-6 control-label">사용일자</label>
 									<div class="col-sm-6">
-									  <p class="form-control-static">2019-02-03</p>
+									  <p class="form-control-static"><%=recentTime %></p>
 									</div>
 								  </div>
 								</div>
@@ -211,7 +215,8 @@
 <%
 	}
 	else if(size > 0){
-		StringTokenizer st = null;
+// 		StringTokenizer st = null;
+		int j = 1;
 		for(int i=0; i<size; i++){
 			if(i == size) break;
 			Map<String,Object>rMap = usemapList.get(i);
@@ -220,12 +225,13 @@
 %>
 							  
 								<tr>
-									<td>1</td>
-									<td colspan="2"><%=rMap.get("UR_PARKING_LOT_LOCATION") %></td>
-									<td><%=rMap.get("UR_PARKING_LOT_NAME") %></td>
-									<td> </td>
+									<td><%=j++ %></td>
+									<td colspan="1"><%=rMap.get("UR_PARKING_LOT_LOCATION") %></td>
+									<td></td>
+									<td ><%=rMap.get("UR_PARKING_LOT_NAME") %></td>
+									<td></td>
 									<td><%=useTime %></td>
-									<td> </td>
+									<th></th>
 									<td class="text-right"><%=rMap.get("CC_HP") %></td>
 								</tr>
 								
@@ -241,8 +247,8 @@
 								</tr>
 								<tr>
 									<td>&nbsp;&nbsp;</td>
-									<td colspan="5" class="footer-invoice">총 사용 시간</td>
-									<td colspan="2" class="footer-invoice"><%=count %></td>
+									<td colspan="5" class="footer-invoice">총 사용 포인트</td>
+									<td colspan="2" class="footer-invoice"><%=hap %></td>
 								</tr>
 								
 							  </tbody>
@@ -324,12 +330,12 @@
 						</div>
 	
 	
-	<div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="home">...</div>
-    <div role="tabpanel" class="tab-pane" id="profile">...</div>
-    <div role="tabpanel" class="tab-pane" id="messages">...</div>
-    <div role="tabpanel" class="tab-pane" id="settings">...</div>
-  	</div>
+<!-- 	<div class="tab-content"> -->
+<!--     <div role="tabpanel" class="tab-pane active" id="home">...</div> -->
+<!--     <div role="tabpanel" class="tab-pane" id="profile">...</div> -->
+<!--     <div role="tabpanel" class="tab-pane" id="messages">...</div> -->
+<!--     <div role="tabpanel" class="tab-pane" id="settings">...</div> -->
+<!--   	</div> -->
 
 					
 

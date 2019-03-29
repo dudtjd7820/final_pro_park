@@ -4,6 +4,7 @@
 
 
 <!-- 영은 -->
+	<!-- 사용이력 json사용 -->
 	<select id="useList" parameterType="park.VO.UseRecordVO" resultType="park.VO.UseRecordVO">
 		select ur.ur_parking_lot_location , ur.ur_parking_lot_name , ccw.cc_hp , ur.start_time
 				,ur.ur_consumption_time
@@ -12,6 +13,7 @@
 		    order by ur.start_time
 	</select>
 	
+	<!-- 사용이력 map사용 -->
 	<select id="usemapList" parameterType="park.VO.UseRecordVO" resultType="map">
 		select ur.ur_parking_lot_location , ur.ur_parking_lot_name , ccw.cc_hp , ur.start_time
 				,ur.ur_consumption_time
@@ -19,6 +21,26 @@
 		    where ur.ur_parking_lot_location = ccw.cc_building_address
 		    order by ur.start_time
 	</select>
+	
+	<!-- 나의정보 가져오기 -->
+	<select id="memberInfo"  resultType="park.VO.MemberVO" parameterType="park.VO.MemberVO">
+		select mem_id, mem_name, mem_point, mem_pw, mem_phone, mem_birthday, mem_uniqueness
+        		,mem_email, mem_grade, mem_join_date
+		     from member
+		     where mem_id = #{mem_id}
+	</select>
+<!-- 	<select id="memberInfo1" resultType="MemberVO" parameterType="String"> -->
+<!-- 		select * -->
+<!-- 		     from member -->
+<!-- 		     where mem_id = #{mem_id} -->
+<!-- 	</select> -->
+	
+	<!-- 비밀번호 변경하기 -->
+	<update id="mem_pwUpd" parameterType="park.VO.MemberVO">
+		update member
+		    set mem_pw = #{mem_pw}
+		    where mem_id = #{mem_id}
+	</update>
 	
 <!-- 영은 -->
 
