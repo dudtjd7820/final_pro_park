@@ -94,8 +94,8 @@
 						<li class="has_submenu">
 							<a href="#">사용자메뉴</a>
 							<ul>
-								<li><a class="has_submenu">나의정보</a></li>
-								<li><a class="has_submenu">사용이력</a></li>
+								<li><a href="myInfo.park">나의정보</a></li>
+								<li><a href="useHistory.park">사용이력</a></li>
 								<li><a class="has_submenu">1:1 문의내역</a></li>
 								<li><a class="has_submenu">내가쓴글</a></li>
 							</ul>
@@ -113,9 +113,9 @@
 						<li class="has_submenu">
 							<a href="#">예약</a>
 							<ul>
-								<li><a href="invoice-print.html">예약하기</a></li>
+								<li><a href="reservation.park">예약하기</a></li>
 								<li><a href="invoice-print.html">예약 수정/취소하기</a></li>
-								<li><a href="invoice-print.html">예약이력</a></li>
+								<li><a href="reservation_history.park">예약이력</a></li>
 								<li><a href="invoice-print.html">예약현황보기</a></li>
 							</ul>
 						</li>
@@ -123,12 +123,12 @@
 						<li class="current-menu-item has_submenu">
 							<a href="#">고객센터</a>
 							<ul>
-								<li><a href="about.html">아이디/비밀번호 찾기</a></li>	
-								<li><a href="notice.jsp">공지사항</a></li>	
-								<li><a href="about.html">질문게시판</a></li>	
-								<li><a href="about.html">자유게시판</a></li>	
-								<li><a href="about.html">1:1문의</a></li>	
-								<li><a href="about.html">제휴문의</a></li>	
+								<li><a href="id_pw_find.park">아이디/비밀번호 찾기</a></li>	
+								<li><a href="notice.park">공지사항</a></li>	
+								<li><a href="question.park">질문게시판</a></li>	
+								<li><a href="free.park">자유게시판</a></li>	
+								<li><a href="inquiry.park">1:1문의</a></li>	
+								<li><a href="contact.park">제휴문의</a></li>	
 							</ul>
 						</li>
 						

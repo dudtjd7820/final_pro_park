@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import oracle.net.aso.p;
 import park.VO.BoardVO;
 import park.VO.MemberVO;
 import park.VO.ReserveVO;
@@ -26,7 +26,7 @@ import park.mvc.dao.MemberDao;
 import park.mvc.logic.MemberLogic;
 
 @Controller
-@RequestMapping(value="member")
+@RequestMapping(value="member", method = { RequestMethod.GET, RequestMethod.POST })
 public class MemberController {
 
 	
@@ -206,7 +206,7 @@ public class MemberController {
 	ModelAndView mav = new ModelAndView();
 	mav.setViewName("prohome/userPage/serviceCenter/noticeRead");
 	BoardVO bVO = memberLogic.boardRead(base_post_number);		
-	MemberDao.boardViewCount(bVO2);		
+	memberDao.boardViewCount(bVO2);		
 	model.addAttribute("boardRead", bVO);		
 	return mav;
 	}

@@ -9,17 +9,28 @@
 <!-- 사용이력 json사용 -->
 
 
-<select resultType="park.VO.UseRecordVO" parameterType="park.VO.UseRecordVO" id="useList">select ur.ur_parking_lot_location , ur.ur_parking_lot_name , ccw.cc_hp , ur.start_time,ur.ur_consumption_timefrom use_record ur, coalition_company_web ccwwhere ur.ur_parking_lot_location = ccw.cc_building_addressorder by ur.start_time </select>
+<select resultType="park.VO.UseRecordVO" parameterType="park.VO.UseRecordVO" id="useList">
+select ur.ur_parking_lot_location , ur.ur_parking_lot_name , ccw.cc_hp , ur.start_time,ur.ur_consumption_time
+from use_record ur, coalition_company_web ccw
+where ur.ur_parking_lot_location = ccw.cc_building_address
+order by ur.start_time </select>
 
 <!-- 사용이력 map사용 -->
 
 
-<select resultType="map" parameterType="park.VO.UseRecordVO" id="usemapList">select ur.ur_parking_lot_location , ur.ur_parking_lot_name , ccw.cc_hp , ur.start_time,ur.ur_consumption_timefrom use_record ur, coalition_company_web ccwwhere ur.ur_parking_lot_location = ccw.cc_building_addressorder by ur.start_time </select>
+<select resultType="map" parameterType="park.VO.UseRecordVO" id="usemapList">
+select ur.ur_parking_lot_location , ur.ur_parking_lot_name , ccw.cc_hp , ur.start_time,ur.ur_consumption_time
+from use_record ur, coalition_company_web ccw
+where ur.ur_parking_lot_location = ccw.cc_building_address
+order by ur.start_time </select>
 
 <!-- 나의정보 가져오기 -->
 
 
-<select resultType="park.VO.MemberVO" parameterType="park.VO.MemberVO" id="memberInfo">select mem_id, mem_name, mem_point, mem_pw, mem_phone, mem_birthday, mem_uniqueness,mem_email, mem_grade, mem_join_datefrom memberwhere mem_id = #{mem_id} </select>
+<select resultType="park.VO.MemberVO" parameterType="park.VO.MemberVO" id="memberInfo">
+select mem_id, mem_name, mem_point, mem_pw, mem_phone, mem_birthday, mem_uniqueness,mem_email, mem_grade, mem_join_date
+from member
+where mem_id = #{mem_id} </select>
 
 <!-- <select id="memberInfo1" resultType="MemberVO" parameterType="String"> -->
 
@@ -39,126 +50,113 @@
 <!-- 비밀번호 변경하기 -->
 
 
-<update parameterType="map" id="mem_pwUpd">update memberset mem_pw = #{mem_pw}where mem_id = #{mem_id} </update>
+<update parameterType="map" id="mem_pwUpd">update member set mem_pw = #{mem_pw} where mem_id = #{mem_id} </update>
 
-<select resultType="String" parameterType="park.VO.MemberVO" id="getPw">select mem_pwfrom memberwhere mem_id = #{mem_id} </select>
+<select resultType="String" parameterType="park.VO.MemberVO" id="getPw">select mem_pwfrom member where mem_id = #{mem_id} </select>
 
 <!-- 영은 -->
 
 
 
 <!-- 슬기 -->
-
-
 <!-- //////////////////////////////////////공지 게시판 시작//////////////////////////////////////////////////////// -->
-
-
-<!-- 공지사항 글 목록 Select문-->
-
-
-
--<select resultType="BoardVO" parameterType="BoardVO" id="jsonNoticeSel">
-select base_post_number, base_title, base_writer, base_created_date, base_view_count from final_2.BASE_BOARDwhere base_post_division = '공지' 
-<if test="searchCombo.equals("base_writer")"> and base_writer LIKE '%'||#{searchText}||'%' </if>
-
-<if test="searchCombo.equals("base_title")">and base_title LIKE '%'||#{searchText}||'%' </if>
-order by base_post_number 
+<!-- 공지사항 글 목록 Select문--> 
+<select id="jsonNoticeSel" parameterType="BoardVO" resultType="BoardVO">
+	select base_post_number, base_title, base_writer, base_created_date, base_view_count from final_2.BASE_BOARD
+	where base_post_division = '공지' 
+	<if test='searchCombo.equals("base_writer")'>
+	and base_writer LIKE '%'||#{searchText}||'%'
+	</if>
+	<if test='searchCombo.equals("base_title")'>
+	and base_title LIKE '%'||#{searchText}||'%'
+	</if>
+	order by base_post_number
 </select>
 
 <!-- 공지사항 글 작성 Insert문 -->
-
-
-<insert id="noticeIns">insert into base_board (base_post_number, base_post_division, base_writer, base_title, base_contents, base_created_date, base_post_pw)values(seq_board_post_number.nextval, '공지', #{base_writer}, #{base_title}, #{base_contents},to_char(sysdate,'YYYY-MM-DD HH24:mi:ss'), #{base_post_pw}) </insert>
+<insert id="noticeIns">
+	insert into base_board (base_post_number, base_post_division, base_writer, base_title, base_contents, base_created_date, base_post_pw)
+	values(seq_board_post_number.nextval, '공지', #{base_writer}, #{base_title}, #{base_contents},to_char(sysdate,'YYYY-MM-DD HH24:mi:ss'), #{base_post_pw})
+</insert>
 
 <!-- 공지사항 글 Delete문 -->
-
-
-<delete id="noticeDel1">delete final_2.notice_board where base_post_number= #{base_post_number} </delete>
-
-<delete id="noticeDel2">delete final_2.BASE_BOARD where base_post_number= #{base_post_number} </delete>
-
+<delete id="noticeDel1">
+	delete final_2.notice_board where base_post_number= #{base_post_number}
+</delete>
+<delete id="noticeDel2">
+	delete final_2.BASE_BOARD where base_post_number= #{base_post_number}
+</delete>
 <!-- //////////////////////////////////////공지 게시판 끝//////////////////////////////////////////////////////// -->
-
-
 <!-- //////////////////////////////////////질문 게시판 시작//////////////////////////////////////////////////////// -->
-
-
-<!-- 질문게시판 글 목록 Select문-->
-
-
-
--<select resultType="BoardVO" parameterType="BoardVO" id="jsonQuestionSel">
-select base_post_number, base_title, base_writer, base_created_date, base_view_count from final_2.BASE_BOARDwhere base_post_division = '질문' 
-<if test="searchCombo.equals("base_writer")"> and base_writer LIKE '%'||#{searchText}||'%' </if>
-
-<if test="searchCombo.equals("base_title")">and base_title LIKE '%'||#{searchText}||'%' </if>
-order by base_post_number 
+<!-- 질문게시판 글 목록 Select문--> 
+<select id="jsonQuestionSel" parameterType="BoardVO" resultType="BoardVO">
+	select base_post_number, base_title, base_writer, base_created_date, base_view_count from final_2.BASE_BOARD
+	where base_post_division = '질문' 
+	<if test='searchCombo.equals("base_writer")'>
+	and base_writer LIKE '%'||#{searchText}||'%'
+	</if>
+	<if test='searchCombo.equals("base_title")'>
+	and base_title LIKE '%'||#{searchText}||'%'
+	</if>
+	order by base_post_number
 </select>
 
 <!-- 질문게시판 글 작성 Insert문 -->
-
-
-<insert id="questionIns">insert into base_board (base_post_number, base_post_division, base_writer, base_title, base_contents, base_created_date, base_post_pw)values(seq_board_post_number.nextval, '질문', #{base_writer}, #{base_title}, #{base_contents},to_char(sysdate,'YYYY-MM-DD HH24:mi:ss'), #{base_post_pw}) </insert>
+<insert id="questionIns">
+	insert into base_board (base_post_number, base_post_division, base_writer, base_title, base_contents, base_created_date, base_post_pw)
+	values(seq_board_post_number.nextval, '질문', #{base_writer}, #{base_title}, #{base_contents},to_char(sysdate,'YYYY-MM-DD HH24:mi:ss'), #{base_post_pw})
+</insert>
 
 <!-- 질문게시판 글 Delete문 -->
-
-
-<delete id="questionDel1">delete final_2.question_board where base_post_number= #{base_post_number} </delete>
-
-<delete id="questionDel2">delete final_2.BASE_BOARD where base_post_number= #{base_post_number} </delete>
-
+<delete id="questionDel1">
+	delete final_2.question_board where base_post_number= #{base_post_number}
+</delete>
+<delete id="questionDel2">
+	delete final_2.BASE_BOARD where base_post_number= #{base_post_number}
+</delete>
 <!-- //////////////////////////////////////질문 게시판 끝//////////////////////////////////////////////////////// -->
-
-
 <!-- //////////////////////////////////////자유 게시판 시작//////////////////////////////////////////////////////// -->
-
-
 <!-- 자유게시판 글 목록 Select문-->
-
-
-
--<select resultType="BoardVO" parameterType="BoardVO" id="jsonFreeSel">
-select base_post_number, base_title, base_writer, base_created_date, base_view_count from final_2.BASE_BOARDwhere base_post_division = '자유' 
-<if test="searchCombo.equals("base_writer")"> and base_writer LIKE '%'||#{searchText}||'%' </if>
-
-<if test="searchCombo.equals("base_title")">and base_title LIKE '%'||#{searchText}||'%' </if>
-order by base_post_number 
+<select id="jsonFreeSel" parameterType="BoardVO" resultType="BoardVO">
+	select base_post_number, base_title, base_writer, base_created_date, base_view_count from final_2.BASE_BOARD 
+	where base_post_division = '자유'
+	<if test='searchCombo.equals("base_writer")'>
+	and base_writer LIKE '%'||#{searchText}||'%'
+	</if>
+	<if test='searchCombo.equals("base_title")'>
+	and base_title LIKE '%'||#{searchText}||'%'
+	</if>
+	order by base_post_number
 </select>
 
 <!-- 자유게시판 글 작성 Insert문 -->
-
-
-<insert parameterType="BoardVO" id="freeIns">insert into base_board (base_post_number, base_post_division, base_writer, base_title, base_contents, base_created_date, base_post_pw)values(seq_board_post_number.nextval, '자유', #{base_writer}, #{base_title}, #{base_contents},to_char(sysdate,'YYYY-MM-DD HH24:mi:ss'), #{base_post_pw}) </insert>
+<insert id="freeIns" parameterType="BoardVO">
+	insert into base_board (base_post_number, base_post_division, base_writer, base_title, base_contents, base_created_date, base_post_pw)
+	values(seq_board_post_number.nextval, '자유', #{base_writer}, #{base_title}, #{base_contents},to_char(sysdate,'YYYY-MM-DD HH24:mi:ss'), #{base_post_pw})
+</insert>
 
 <!-- 자유게시판 글 Delete문 -->
-
-
-<delete id="freeDel">delete final_2.BASE_BOARD where base_post_number= #{base_post_number} </delete>
-
+<delete id="freeDel">
+	delete final_2.BASE_BOARD where base_post_number= #{base_post_number}
+</delete>
 <!-- //////////////////////////////////////자유 게시판 끝//////////////////////////////////////////////////////// -->
-
-
 <!-- //////////////////////////////////////게시판 공통 쿼리문 시작//////////////////////////////////////////////////////// -->
-
-
 <!-- 게시판 글 읽기 -->
-
-
-<select resultType="BoardVO" id="boardRead">select base_writer, base_created_date, base_title, base_contents, base_post_pw from final_2.BASE_BOARD where base_post_number = #{base_post_number} </select>
+<select id="boardRead" resultType="BoardVO">
+	select base_writer, base_created_date, base_title, base_contents, base_post_pw from final_2.BASE_BOARD where base_post_number = #{base_post_number}
+</select>
 
 <!-- 게시판 글 조회수 증가 -->
-
-
-<update id="boardViewCount">update final_2.BASE_BOARD set base_view_count = #{base_view_count}+1 where base_post_number = #{base_post_number} </update>
+<update id="boardViewCount">
+	update final_2.BASE_BOARD set base_view_count = #{base_view_count}+1 where base_post_number = #{base_post_number}
+</update>
 
 <!-- 게시판 글 Update문 -->
-
-
-<update id="boardUpd">update final_2.BASE_BOARD set base_title=#{base_title}, base_contents= #{base_contents} where base_post_number= #{base_post_number} </update>
+<update id="boardUpd">
+	update final_2.BASE_BOARD set base_title=#{base_title}, base_contents= #{base_contents} where base_post_number= #{base_post_number}
+</update>
 
 <!-- //////////////////////////////////////게시판 공통 쿼리문 끝//////////////////////////////////////////////////////// -->
-
-
 <!-- 슬기 -->
 
 
