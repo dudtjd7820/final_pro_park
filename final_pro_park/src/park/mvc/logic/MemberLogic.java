@@ -59,12 +59,19 @@ public class MemberLogic {
 		return memberList;
 	}
 	
+	public String getPw(String mem_id)throws Exception{
+		logger.info("getPw 호출 성공");
+		String getPw = memberDao.getPw(mem_id);
+		return getPw;
+	}
+	
 	public int mem_pwUpd(Map<String, Object> pMap) throws Exception{
 		logger.info("mem_pwUpd 호출 성공");
 		int result = 0;
 		result = memberDao.mem_pwUpd(pMap);
 		return result;
 	}
+	
 
 //	<!-- 영은 -->
 //

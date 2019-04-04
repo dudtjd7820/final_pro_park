@@ -8,18 +8,19 @@
 		size = memberList.size();
 	}
 	
-	Map<String,Object> rMap = null;
 	
 %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
+<%@ include file="../common/easyui_common.jsp" %>
 <script type="text/javascript">
 
 //비밀번호 수정하기
 	function mem_pwUpdate(){
+		alert("mem_pwUpdate호출1");
 		$("#f_pwUpd").attr("method","post");
-		$("#f_pwUpd").attr("action","mem_pwUpd");
+		$("#f_pwUpd").attr("action","mem_pwUpd.park");
 		$("#f_pwUpd").submit();
 	}
 	
@@ -196,9 +197,7 @@
 										<i class="set-privacy fa fa-lock"></i>
 									</li>
 								</ul>
-<%
-	}
-%>								
+							
 								<!-- <div class="bs-callout callout-danger">
 									<h4 class="title">Nullam sodales lorem sit amet</h4>
 									<p class="text">Integer euismod cursus dolor. Curamet pellentesque sed, sodales at augue.</p>
@@ -206,15 +205,21 @@
 								<div class="section-title line-style">
 									<h3 class="title">비밀번호 변경</h3>
 								</div>
-								<form id="f_pwUpd" method="post" action="#" class="grey-box">
+								<form id="f_pwUpd" method="post" class="grey-box">
 									<span class="text">
 										비밀번호를 변경하고싶으시면 쓰세욤
 									</span>
 									<input type="password" class="form-control" id="old-password" name="old-password" placeholder="현재 비밀번호">
 									<input type="password" class="form-control" id="password" name="password" placeholder="새 비밀번호">
 									<input type="password" class="form-control" id="re-password" name="re-password" placeholder="새 비밀번호 재입력">
-									<button type="submit" class="btn btn-default" onclick="mem_pwUpdate()">Save Changes</button>								
+									<input type="hidden" name="h_mem_id" value="<%=mVO.getMem_id()%>"/>
+<!-- 									<button type="submit" class="btn btn-default" onclick="mem_pwUpdate()">Save Changes</button>								 -->
+									<input id="submit" name="submit" type="submit" class="btn btn-default" onclick="mem_pwUpdate()" value="Save Changes">								
 								</form>
+								
+<%
+	}
+%>									
 							</div>
 							<div class="col-md-5">
 								<div class="section-title line-style no-margin space-form">

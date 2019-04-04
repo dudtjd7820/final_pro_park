@@ -36,11 +36,18 @@
 <!-- 	</select> -->
 	
 	<!-- 비밀번호 변경하기 -->
-	<update id="mem_pwUpd" parameterType="park.VO.MemberVO">
+	<update id="mem_pwUpd" parameterType="map">
 		update member
 		    set mem_pw = #{mem_pw}
 		    where mem_id = #{mem_id}
 	</update>
+	
+	<select id="getPw" resultType="String" parameterType="park.VO.MemberVO">
+		select mem_pw
+			from member
+			where mem_id = #{mem_id}
+	</select>
+	
 	
 <!-- 영은 -->
 

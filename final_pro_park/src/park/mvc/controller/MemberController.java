@@ -3,6 +3,8 @@ package park.mvc.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -20,7 +23,7 @@ import park.mvc.dao.MemberDao;
 import park.mvc.logic.MemberLogic;
 
 @Controller
-@RequestMapping(value="member")
+@RequestMapping(value="member", method= {RequestMethod.GET , RequestMethod.POST})
 public class MemberController {
 
 	@Autowired
@@ -40,8 +43,8 @@ public class MemberController {
 	 * 나의정보 불러오기 화면
 	 * @return mav
 	 *********************************************************************************/
-	@GetMapping("/myInfo")
-	public ModelAndView myInfo (@ModelAttribute MemberVO mVO, Model model) {
+	@PostMapping("/myInfo")
+	public ModelAndView myInfo (@ModelAttribute MemberVO mVO, Model model, HttpServletRequest req) {
 		logger.info("myInfo 호출");
 		String mem_id = "test1";
 		ModelAndView mav = new ModelAndView();	
@@ -53,31 +56,63 @@ public class MemberController {
 //			MemberVO mVO1 = memberLogic.memberInfo(mem_id);
 //			model.addAttribute("memberInfo", mVO1);
 			model.addAttribute("memberList", memberList);
-			logger.info(memberList.get(0).getMem_id() );
+			logger.info(memberList.get(0).getMem_id());
+			logger.info(memberList.get(0).getMem_pw());
 //			logger.info(mVO1.getMem_id() );
 			//===========================나의 정보 불러오기 끝===========================//
+//			String getPw = getPw(memberList.get(0).getMem_id());
+//			logger.info("비밀번호 : "+getPw);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return mav;
 	}
 	
+	//현재 비밀번호 가져오기
+	public String getPw(String mem_id) {
+		logger.info("getPw호출 성공");
+		String getPw = "";
+		try {
+			getPw = memberLogic.getPw(mem_id);	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return getPw;
+	}
 	/***********************************************************************************
 	 * 비밀번호 변경 메소드 
 	 * @param pMap - @RequestParam Map<String,Object> 사용
 	 * @return - 나의정보 불러오기 화면 /myInfo
 	 ***********************************************************************************/
-	@PostMapping("mem_pwUpd")
+	@PostMapping("/mem_pwUpd")
 	public String mem_pwUpd(@RequestParam Map<String,Object> pMap) {
+		logger.info("mem_pwUpd호출 성공");	
 		int result = 0;
-		try {
-			result = memberLogic.mem_pwUpd(pMap);
-			logger.info("mem_pw : "+pMap.get("mem_pw"));
-			logger.info("비밀번호 변경 성공여부 : "+result);			
+		try {			
+			String inputPw = pMap.get("old-password").toString();	 //사용자가 화면에서 입력한 현재비밀번호를 담기
+			String getPw = getPw(pMap.get("h_mem_id").toString());   //mem_id에 설정된 비밀번호를 getPw에 담기
+			logger.info("현재 mem_id : "+pMap.get("h_mem_id").toString());
+			logger.info("현재 mem_pw : "+pMap.get("old-password").toString());
+			logger.info("바꿀 mem_pw : "+pMap.get("password").toString());
+			//현재 비밀번호가 입력한 비밀번호와 같을 때
+			if(inputPw.equals(getPw)) {
+				//새로입력한 비밀번호 두번이 맞을 때
+				if(pMap.get("password").toString().equals(pMap.get("re-password").toString())) {
+					logger.info("비번두번 맞음");
+					result = memberLogic.mem_pwUpd(pMap);				
+				}
+				else {
+					logger.info("비번 두번 틀림");
+				}
+				logger.info("비밀번호 변경 성공여부 : "+result);			
+			}
+			else {
+				logger.info("비밀번호가 올바르지 않습니다.");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "forward:/myInfo";
+		return "redirect:/member/myInfo.park";
 	}
 	
 //	@GetMapping("/myInfo")

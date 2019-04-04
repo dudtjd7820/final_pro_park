@@ -66,11 +66,15 @@ public class MemberDao {
 		return sqlSessionTemplate.selectList("member.memberInfo",mem_id);
 	}
 	
-	
+	//현재 비밀번호 불러오기
+	public String getPw(String mem_id) throws Exception{
+		return sqlSessionTemplate.selectOne("member.getPw", mem_id);
+	}
+
+	//비밀번호 변경하기
 	public int mem_pwUpd(Map<String, Object> pMap) throws Exception{
 		return sqlSessionTemplate.update("member.mem_pwUpd", pMap);
 	}
-
 	
 //	<!-- 영은 -->
 //
