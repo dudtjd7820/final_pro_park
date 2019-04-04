@@ -9,11 +9,6 @@
     if (reserveList!= null){
     	size = reserveList.size();
     }
-    
-    
-    
-    
-   
     %>
         
     
@@ -47,8 +42,8 @@
 				<div data-offset="8"  class="p4 parallax"></div>
 				<span class="cover"></span>
 				<div class="container header-text">
-					<div><h1 class="title">예약 페이지 @@</h1></div>
-					<div><h2 class="sub-title">사용예정시간 1시간전까지만 취소됩니다 . 취소안할시 예상시간 차감. (최대예약은 5개 )</h2></div>
+					<div><h1 class="title">Grid right column</h1></div>
+					<div><h2 class="sub-title">Lorem ipsum dolor sitats adipiscing elit justo</h2></div>
 				</div>
 			</div>
 			<div id="breadcrumb">
@@ -69,37 +64,231 @@
 					<div class="col-sm-8 col-md-9">
 					<!--  여기가 센터 -->
 						<div class="row">
-						
-						예약페이지  start <br>
-						
-						
-	<h2>시작 날짜 선택하기 </h2>
-    <div onselect="getstarttime()" id="cc_start"  class="easyui-calendar" style="width:600px;height:250px;"></div>
-    
-    <script type="text/javascript">
+					
+					님의예약이력 (현제 예약중인 )
+ <table id="reservation_t" class="easyui-datagrid"  style="width:800px; height:300px;">
+    <thead>
+        <tr>
+        
+         	<th data-options="field:'rrtt_number',width:100">예약번호</th>
+         	<th data-options="field:'rrtt_mem_id',width:100">사용자 id</th>
+            <th data-options="field:'rrtt_expected_start_time',width:150">사용일 -시간</th>
+            <th data-options="field:'rrtt_expected_end_time',width:150">종료일 -시간</th>
+            <th data-options="field:'rrtt_parking_lot_name',width:100">시용지점</th>
+            <th data-options="field:'rrtt_parking_lot_location',width:200">지역</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+    <%
+	if(size==0){
+	%>
+        <tr>
+				<td rowspan="6">조회</td>
+				<td rowspan="6">결과가</td>
+				<td rowspan="6">없습니다..</td>
+			</tr> 
+<%
+	}
+	else if (size>0){
+		for ( int i=0; i<size; i++){
+		ReserveVO reserveVO= reserveList.get(i);
+%>
+<tr>
+				<td><%=reserveVO.getrrtt_number() %></td>
+				<td><%=reserveVO.getMem_id()%></td>
+				<td><%=reserveVO.getRrtt_expected_start_time() %></td>
+				<td><%=reserveVO.getRrtt_expected_end_time() %></td>
+				<td><%=reserveVO.getRrtt_parking_lot_name() %></td>
+				<td><%=reserveVO.getRrtt_parking_lot_location()%></td>
+				
+			</tr>       
+<%
+		}//////////////end of for
+	}
+%>
 
-	function getstarttime(){
-		 $('#cc_start').calendar({onSelect: function(date){
-		    		alert(date.getFullYear()+":"+(date.getMonth()+1)+":"+date.getDate());
-		    	}
-		    });
-		}
-	</script>
-    
-    <input class="easyui-timespinner" label="Start Time:" labelPosition="top" value="01:20" style="height: width:300px;">
-	<div id=""> 선택한시간날짜 :</div>
-	
-	
-	
-	
-<br>
-<br>
+			
+    </tbody>
+</table> 
+
+<script type="text/javascript">
+
+function getSelections(){
+	 var row = $('#reservation_t').datagrid('getSelected');
+	 var data;
+	     if (row){
+        
+			data = row.rrtt_number +" &nbsp; "+ row.rrtt_parking_lot_name +" &nbsp; "+ row.rrtt_parking_lot_location
+			+"<br>"+" 예약시간 : "+ row.rrtt_expected_start_time
+			+"<br>"+" 종료시간 : "+ row.rrtt_expected_end_time;
+     	}
+	     	$('#data').empty();
+	     $('#data').append(data);	
+
+	     	$('#data2').empty();
+		     $('#data2').append(data);	
+}
+</script>
+
 <br>
 
-     <h2>종료 날짜 선택하기 </h2>
-    <div id="cc_end"  class="easyui-calendar" style="width:600px;height:250px;"></div>
-    
-    
+<button onclick="getSelections()" id="btn" type="button" class="btn btn-default" data-toggle="modal" data-target="#upd-Modal" color=>
+  예약 수정
+</button>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="upd-Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title" id="myModalLabel">예약 시간변경 </h4>
+      </div>
+      <div class="modal-body">
+     
+        <div id="data">
+        	
+        </div>
+        해당 예약의 변경시간을 선택하세요 
+     
+     <br>
+        변경할 시작시간
+        <input id="upd_starttime" class="easyui-datetimebox" name="birthday" 
+        data-options="required:true,showSeconds:false" value="3/4/2010 2:3" style="width:150px">
+     <br>   
+        변경할 종료시간
+        <input id="upd_endtime" class="easyui-datetimebox" name="birthday" 
+        data-options="required:true,showSeconds:false" value="3/4/2010 2:3" style="width:150px">
+        
+      </div>
+      <div class="modal-footer">
+      
+        <button onclick="updreserv()" type="button" class="btn btn-default" data-dismiss="modal">변경하기</button>
+        <button type="button" class="btn btn-primary">창닫기</button>
+        
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+function updreserv(){
+	 
+
+	 var row = $('#reservation_t').datagrid('getSelected');
+	 var s_rrtt_number = row.rrtt_number
+	 var s_mem_id = row.rrtt_mem_id
+	 var crud ="upd";
+
+	 var upd_starttime = $ ( '#upd_starttime'). datetimebox ( 'getValue');
+	 var upd_endtime = $ ( '#upd_endtime'). datetimebox ( 'getValue');
+	 
+	 if ( s_rrtt_number =="조회") {
+		 alert("선택된 예약이없습니다.")
+		 }
+
+	 else {
+	 	var request = $.ajax({
+		  url: "/member/upd_del_reserv.park?mem_id="+s_mem_id+"&&rrtt_number="+s_rrtt_number+"&&crud="+crud
+		  		+"&&upd_starttime="+upd_starttime+"&&upd_endtime="+upd_endtime,
+		  method: "GET",
+		});
+	 	alert("수정되었습니다.")
+	  	location.reload();
+	 }
+}
+</script>
+
+<button onclick="getSelections()" type="button" class="btn btn-default" data-toggle="modal" data-target="#del-Modal" color="Red">
+  예약 삭제
+</button>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="del-Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title" id="myModalLabel">예약 삭제 취소</h4>
+      </div>
+      <div class="modal-body">
+      <div id="data2"></div>
+      <br>
+      이예약을 취소하기겠습니까?
+      
+      </div>
+      
+      <div class="modal-footer">
+        <button onclick="delreserv()" type="button" class="btn btn-default" data-dismiss="modal">삭제하기</button>
+        <button type="button" class="btn btn-primary">창닫기</button>
+      </div>
+      
+      <script type="text/javascript">
+function delreserv(){
+	 
+
+	 var row = $('#reservation_t').datagrid('getSelected');
+	 var s_rrtt_number = row.rrtt_number
+	 var s_mem_id = row.rrtt_mem_id
+	 var crud ="del";
+	 
+	 if ( s_rrtt_number =="조회") {
+		 alert("선택된 예약이없습니다.")
+		 }
+
+	 else {
+	 	var request = $.ajax({
+	 		url: "/member/upd_del_reserv.park?mem_id="+s_mem_id+"&&rrtt_number="+s_rrtt_number+"&&crud="+crud,
+		  method: "GET",
+		});
+	 	alert("삭제되었습니다.")
+	  	location.reload();
+	 }
+}
+
+
+	
+</script>
+      
+    </div>
+  </div>
+  여긴몰까요 ?
+</div>
+
+<br>	
+<br>	
+<br>		
+나의예약이력 (종료된 모든 )
+ <table id="reservation end" class="easyui-datagrid"  style="width:800px; height:300px;"
+  data-options="url:'datagrid_data.json',fitColumns:true,singleSelect:true">>
+    <thead>
+        <tr>
+            <th data-options="field:'rrtt_expected_start_time',width:200">사용일 -시간</th>
+            <th data-options="field:'rrtt_expected_end_time',width:200">종료일 -시간</th>
+            <th data-options="field:'rrtt_parking_lot_name',width:200">시용지점</th>
+            <th data-options="field:'rrtt_parking_lot_location',width:100">지역</th>
+            <th data-options="field:'차감시간',width:100">이행 여부</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td></td><td>name1</td><td>2323</td>
+        </tr>
+        <tr>
+            <td>002</td><td>name2</td><td>4612</td>
+        </tr>
+    </tbody>
+</table> 
+
+
+
 
 							
 							

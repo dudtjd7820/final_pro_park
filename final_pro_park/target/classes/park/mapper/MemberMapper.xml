@@ -29,8 +29,18 @@
 
 <!-- 영성 -->
 
-<select id="getreserv" parameterType="String" resultType="ReserveVO"> select * from reserve_real_time_table where mem_id=#{id} </select>
+<select id="getreserv_ing" parameterType="String" resultType="ReserveVO"> 
+select * from reserve_real_time_table where mem_id=#{id} 
+</select>
 
+<delete id="delreserv" parameterType="map" >
+DELETE FROM reserve_real_time_table WHERE MEM_ID=#{mem_id} and RRTT_NUMBER=#{rrtt_number}
+</delete>
+
+<update id="updreserv" parameterType="map">
+UPDATE reserve_real_time_table SET RRTT_EXPECTED_START_TIME =#{upd_starttime},
+RRTT_EXPECTED_END_TIME =#{upd_endtime}  WHERE MEM_ID=#{mem_id} and RRTT_NUMBER=#{rrtt_number} 
+</update>
 
 <!-- 영성 -->
 

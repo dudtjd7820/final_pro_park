@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import oracle.net.aso.p;
 import park.VO.ReserveVO;
 import park.mvc.dao.MemberDao;
 import park.mvc.logic.MemberLogic;
@@ -20,9 +21,6 @@ import park.mvc.logic.MemberLogic;
 @RequestMapping(value="member")
 public class MemberController {
 
-	@Autowired
-	MemberDao memberDao = null;
-	
 	@Autowired
 	MemberLogic memberLogic =null;
 	
@@ -56,29 +54,36 @@ public class MemberController {
 //
 //	<!-- 영성 -->
 	
-	@GetMapping("/reservation")
+	@GetMapping("/reservation_history")
 	public ModelAndView reservationpage(Model m) {
 		
-		String id ="test";
+		String id ="test1";
 		
-		List<ReserveVO>  reserveList_ing = memberLogic.getreserveList(id);
-		
-		logger.info("여긴오나요 ?");
+		List<ReserveVO> reserveList_ing = memberLogic.getreserveList(id);
 		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("prohome/userPage/reserv/reservation");
+		mav.setViewName("prohome/userPage/reserv/reservation_history");
 		
-
-		
-		m.addAttribute("reserveList", reserveList_ing);	
+		m.addAttribute("reserveList", reserveList_ing);
 	
 		return mav;
 		
 	}
 	
-	@GetMapping("/reserv")
+	@GetMapping("/upd_del_reserv")
+	public void upd_del_reserv(@RequestParam Map<String,String> pMap) {
+		
+		String crud = pMap.get("crud");
+		memberLogic.upd_del_reserv(pMap);
+	}
+	
+	
+	
+	
+	@GetMapping("/reservation")
 	public ModelAndView getreserv() {
 		ModelAndView mav = new ModelAndView();
+		mav.setViewName("prohome/userPage/reserv/reservation");
 		return mav;
 		
 	}

@@ -60,6 +60,14 @@ public class MemberLogic {
 		return reserveList_ing;
 	}
 
+
+
+	public void  upd_del_reserv(Map<String, String> pMap) {
+		
+		memberDao. upd_del_reserv(pMap); 
+		
+	}
+
 //	<!-- 영성 -->
 
 }

@@ -51,13 +51,13 @@ public class MemberDao {
 //
 //
 //	<!-- 영성 -->
+	
 
 	public List<ReserveVO> getreserve(String id) {
-		logger.info("memerDao 실행 됨 ? " + id);
 		
 		try {
 			
-			List<ReserveVO> reservList_ing = sqlSessionTemplate.selectList("member.getreserv_end",id);
+			List<ReserveVO> reservList_ing = sqlSessionTemplate.selectList("member.getreserv_ing",id);
 		
 			return reservList_ing;
 			
@@ -67,9 +67,21 @@ public class MemberDao {
 			
 		return reservList_ing;
 		}
-		
-		
 	
+	}
+
+
+
+
+	public void  upd_del_reserv(Map<String, String> pMap) {
+		
+		if (pMap.get("crud").equals("del")) {
+			sqlSessionTemplate.delete("member.delreserv", pMap);
+		}
+		
+		else if (pMap.get("crud").equals("upd")) {
+			sqlSessionTemplate.update("member.updreserv", pMap);
+		}
 	}
 	
 //	<!-- 영성 -->
