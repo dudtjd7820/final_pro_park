@@ -6,46 +6,30 @@
 <meta charset="UTF-8">
 <%@ include file="../common/easyui.jsp"%>
 <script type="text/javascript">
-//수정 버튼 누르면 비밀번호 입력창 발생
-function pwInput(){
-	$("#pwDialog").dialog('open');
-}
-//다이얼로그창에 비밀번호 치고 엔터키 누름
-function press(){ 
-	alart("dkdk");
+jQuery.noConflict(); 
+var j$ = jQuery;
+	/* 글 수정 버튼 누르면 처리 시작 */
+	function save() {
+		var aa = document.location.href;
+		var bb;
+		bb=aa.split("?");
+		//폼 전송 처리함.
+		j$("#f_save").attr("method", "POST");
+		j$("#f_save").attr("action", "freeUpd.park?" + bb[1]);
+		j$("#f_save").submit();
 	}
-
+	/* 글 수정 버튼 누르면 처리 끝 */
 </script>
 </head>
 <body>
-<%@ include file="../common/header.jsp"%>
 <script type="text/javascript">
 jQuery.noConflict(); 
 var j$ = jQuery;
-j$(document).ready(function (){
-
-j$('#dialPass').keyup(function(e){
-		if (e.keyCode == 13)	
-		console.log("gg");
-		});
-//수정화면으로 넘어가기
-function edit(){
-var aa = document.location.href;
-var bb;
-var cc;
-bb=aa.split("?");
-cc=bb[1].split("&");
-location.href="edit.park?" + cc[0];
-}
-
-
-	
-
+j$(document).ready(function (){//이름이 없는 함수 선언
 
 });
-
-
 </script>
+<%@ include file="../common/header.jsp"%>
 
 <!-- 헤더 밑 메뉴 그림 시작 -->
 	<section id="header-page" class="header-margin-base">
@@ -57,19 +41,19 @@ location.href="edit.park?" + cc[0];
 			<span class="cover"></span>
 			<div class="container header-text">
 				<div>
-					<h1 class="title">질문게시판</h1>
+					<h1 class="title">자유게시판</h1>
 				</div>
 				<div>
-					<h2 class="sub-title">궁금한점을 질문하세요</h2>
+					<h2 class="sub-title">자유게시판 입니다</h2>
 				</div>
 			</div>
 		</div>
 		<div id="breadcrumb">
 			<div class="container">
 				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-home"></i></a></li>
+					<li><a href="usermain.park"><i class="fa fa-home"></i></a></li>
 					<li><a href="#">고객센터</a></li>
-					<li class="active">질문게시판</li>
+					<li class="active">자유게시판</li>
 				</ol>
 			</div>
 		</div>
@@ -90,67 +74,52 @@ location.href="edit.park?" + cc[0];
 					<i class="icon fa fa-user-secret"></i> 아이디/비밀번호 찾기</a></li>
 					<li><a class="faq-button" href="notice.park">
 					<i class="icon fa fa-home"></i> 공지사항</a></li>
-					<li><a class="faq-button active" href="question.park">
+					<li><a class="faq-button" href="question.park">
 					<i class="icon fa fa-heart"></i> 질문게시판</a></li>
-					<li><a class="faq-button" href="free.park">
+					<li><a class="faq-button active" href="free.park">
 					<i class="icon fa fa-plus"></i> 자유게시판</a></li>
 					<li><a class="faq-button" href="inquiry.park">
 					<i class="icon fa fa-plus"></i> 1:1문의</a></li>
-					<li><a class="faq-button" href="new-property.html">
+					<li><a class="faq-button" href="contact.park">
 					<i class="icon fa fa-plus"></i> 제휴문의</a></li>
 				</ul>
 			</div>
 			<!-- 왼쪽 메뉴리스트 끝 -->
 			<div class="col-sm-9 col-md-9">
 				<div class="col-md-12">
+					<form id="f_save" method="post">
 							<div class="row">
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<label for="text">작성자</label>
-									<input type="text" class="margin-bottom form-control" id="base_writer" name="base_writer" value="${read.base_writer}" readonly="readonly">
+									<input type="text" class="margin-bottom form-control" id="base_writer" name="base_writer" value="${boardUpd.base_writer}" readonly="readonly">
 								</div>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<label for="text">작성일</label>
-									<input type="text" class="margin-bottom form-control" id="base_created_date" name="base_created_date" value="${read.base_created_date}" readonly="readonly">
+									<input type="text" class="margin-bottom form-control" id="base_created_date" name="base_created_date" value="${boardUpd.base_created_date}" readonly="readonly">
 								</div>
 								<div class="col-md-12">
 									<label for="text">제목</label>
-									<input type="text" class="margin-bottom form-control" id="base_title" name="base_title" value="${read.base_title}" readonly="readonly">
+									<input type="text" class="margin-bottom form-control" id="base_title" name="base_title" value="${boardUpd.base_title}">
 								</div>
 								<div class="col-md-12">
 									<label for="text">내용</label>
-									<textarea class="margin-bottom form-control" rows="10" name="base_contents" id="base_contents" readonly="readonly">${read.base_contents}</textarea>
+									<textarea class="margin-bottom form-control" rows="10" name="base_contents" id="base_contents">${boardUpd.base_contents}</textarea>
 								</div>
 							</div>
 							<br>
 							<span style="float:right">
 						<!-- 글 수정 버튼 시작 -->	
-<!-- 							<input id="submit" name="submit" type="submit" value="수정" class="btn btn-default" onClick="location.href='edit.park?base_post_number=25'"> -->
-							<input id="submit" name="submit" type="submit" value="수정" class="btn btn-default" onClick="pwInput()">
-							
-							
+							<input id="submit" name="submit" type="submit" value="완료" class="btn btn-default" onClick="save()">
 						<!-- 글 수정 버튼 끝 -->
 						<!-- 글 목록 버튼 시작-->
 							<a href="question.park" class="btn btn-default" >목록으로</a></span>
 						<!-- 글 목록 버튼 끝-->
-						<!-- 비밀번호입력 다이얼로그 시작 -->
-					<form id="f_save" name="f_save" method="post">
-						<div id="pwDialog" class="easyui-dialog" title="비밀번호 입력" style="width:400px;height:200px;"
-        					data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true">
-        					<div align="center">
-    						<br>
-    						
-    						<h4>비밀번호를 입력하세요</h4>
-    						 
-    						<br>
-<%--     						<input type="text" name="base_post_pw" id="base_post_pw" value="${read.base_post_pw}"> --%>
-    						<input type="text" id="dialPass" name="dialPass" class="easyui-passwordbox" prompt="Password" iconWidth="28" style="width:70%;height:34px;padding:10px">
-
-							</div>
-						</div>
 						</form>
+						
+						
+						
 					</div>
 			</div></div></div>
-						<!-- 비밀번호입력 다이얼로그 끝 -->
 	
 	<br>
 	<br>

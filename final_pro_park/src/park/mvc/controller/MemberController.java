@@ -48,15 +48,88 @@ public class MemberController {
 		return mav;
 	}
 
-	// 공지사항
+///////////////////////////////공지 게시판 시작///////////////////////////////////////////////
+	// 공지사항 메인화면
 	@GetMapping("/notice")
 	public ModelAndView notice() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("prohome/userPage/serviceCenter/notice");
 		return mav;
 	}
-
-	// 질문게시판
+	
+	// 공지사항 글 작성화면
+	@GetMapping("/noticeWrite")
+	public ModelAndView noticeWrite() {
+	ModelAndView mav = new ModelAndView();
+	mav.setViewName("prohome/userPage/serviceCenter/noticeWrite");
+	return mav;
+	}
+	
+	// 공지사항 글 Insert성공
+	@PostMapping("/noticeIns")
+	public ModelAndView noticeIns(@ModelAttribute BoardVO bVO) {
+	logger.info("noticeIns 호출 성공");
+	memberLogic.noticeIns(bVO);
+	ModelAndView mav = new ModelAndView();
+	mav.setViewName("prohome/userPage/serviceCenter/notice");
+	return mav;
+	}
+	
+	//공지사항에 넣기위해 json목록 불러오기
+	@GetMapping("/jsonNoticeSel")
+	@ResponseBody
+	public List<BoardVO> jsonNoticeSel(@ModelAttribute BoardVO bVO) {
+	logger.info("jsonNoticeSel 호출 성공");
+	List<BoardVO> jsonNoticeSel = null;
+	jsonNoticeSel = memberLogic.jsonNoticeSel(bVO);
+	return jsonNoticeSel;
+	}
+	
+	// 공지사항 글 조회
+	@GetMapping("/noticeRead")
+	public ModelAndView noticeRead(@RequestParam("base_post_number") int base_post_number, Model model, BoardVO bVO2) throws Exception {
+	logger.info("noticeRead");
+	ModelAndView mav = new ModelAndView();
+	mav.setViewName("prohome/userPage/serviceCenter/noticeRead");
+	BoardVO bVO = memberLogic.boardRead(base_post_number);		
+	memberDao.boardViewCount(bVO2);		
+	model.addAttribute("boardRead", bVO);		
+	return mav;
+	}
+	
+	//공지사항 글 수정 화면
+	@GetMapping("/noticeEdit")
+	public ModelAndView noticeEdit(@RequestParam("base_post_number") int base_post_number, Model model) {
+	logger.info("글 수정됨");
+	ModelAndView mav = new ModelAndView();
+	mav.setViewName("prohome/userPage/serviceCenter/noticeEdit");
+	BoardVO bVO = memberLogic.boardRead(base_post_number);
+	model.addAttribute("boardUpd", bVO);
+	return mav;
+	}
+	
+	//공지사항 글 수정 성공
+	@PostMapping("/noticeUpd")
+	public ModelAndView noticeUpd(@ModelAttribute BoardVO bVO) {
+	logger.info("noticeUpd 호출 성공");
+	memberLogic.boardUpd(bVO);
+	ModelAndView mav = new ModelAndView();
+	mav.setViewName("prohome/userPage/serviceCenter/notice");
+	return mav;
+	}
+	
+	//공지사항 글 Delete 성공
+	@PostMapping("/noticeDel")
+	public ModelAndView noticeDel(@ModelAttribute BoardVO bVO) {
+	logger.info("noticeDel 호출 성공");
+	memberLogic.noticeDel(bVO);
+	ModelAndView mav = new ModelAndView();
+	mav.setViewName("prohome/userPage/serviceCenter/notice");
+	return mav;
+	}
+///////////////////////////////공지 게시판 끝///////////////////////////////////////////////
+///////////////////////////////질문 게시판 시작///////////////////////////////////////////////
+	// 질문게시판 메인화면
 	@GetMapping("/question")
 	public ModelAndView question() {
 		ModelAndView mav = new ModelAndView();
@@ -65,10 +138,10 @@ public class MemberController {
 	}
 
 	// 질문 글 작성화면
-	@GetMapping("/questWrite")
-	public ModelAndView write() {
+	@GetMapping("/questionWrite")
+	public ModelAndView questionWrite() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("prohome/userPage/serviceCenter/questWrite");
+		mav.setViewName("prohome/userPage/serviceCenter/questionWrite");
 		return mav;
 	}
 
@@ -82,8 +155,6 @@ public class MemberController {
 		return mav;
 	}
 	
-
-
 	//질문게시판에 넣기위해 json목록 불러오기
 	@GetMapping("/jsonQuestionSel")
 	@ResponseBody
@@ -94,39 +165,57 @@ public class MemberController {
 		return jsonQuestionSel;
 	}
 	
-	//id, pw 찾기화면
-	@GetMapping("/id_pw_find")
-	public ModelAndView id_pw_find() {
+	// 질문 글 조회
+	@GetMapping("/questionRead")
+	public ModelAndView questionRead(@RequestParam("base_post_number") int base_post_number, Model model, BoardVO bVO2) throws Exception {
+		logger.info("questionRead");
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("prohome/userPage/serviceCenter/id_pw_find");
+		mav.setViewName("prohome/userPage/serviceCenter/questionRead");
+		BoardVO bVO = memberLogic.boardRead(base_post_number);		
+		memberDao.boardViewCount(bVO2);		
+		model.addAttribute("boardRead", bVO);		
 		return mav;
 	}
-
-	//1:1 문의 화면
-	@GetMapping("/inquiry")
-	public ModelAndView inquiry() {
-	ModelAndView mav = new ModelAndView();
-		mav.setViewName("prohome/userPage/serviceCenter/inquiry");
+	
+	//질문 글 수정 화면
+	@GetMapping("/questionEdit")
+	public ModelAndView questionEdit(@RequestParam("base_post_number") int base_post_number, Model model) {
+		logger.info("questionEdit");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("prohome/userPage/serviceCenter/questionEdit");
+		BoardVO bVO = memberLogic.boardRead(base_post_number);
+		model.addAttribute("boardUpd", bVO);
 		return mav;
 	}
-		
-	//자유게시판 화면
+	
+	// 질문 글 수정 성공
+	@PostMapping("/questionUpd")
+	public ModelAndView questionUpd(@ModelAttribute BoardVO bVO) {
+		logger.info("questionUpd 호출 성공");
+		memberLogic.boardUpd(bVO);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("prohome/userPage/serviceCenter/question");
+		return mav;
+	}
+	
+	// 질문 글 Delete 성공
+	@PostMapping("/questionDel")
+	public ModelAndView questionDel(@ModelAttribute BoardVO bVO) {
+		logger.info("questionDel 호출 성공");
+		memberLogic.questionDel(bVO);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("prohome/userPage/serviceCenter/question");
+		return mav;
+	}
+///////////////////////////////질문 게시판 끝///////////////////////////////////////////////
+///////////////////////////////자유 게시판 시작/////////////////////////////////////////////
+	//자유게시판 메인화면
 	@GetMapping("/free")
 	public ModelAndView free() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("prohome/userPage/serviceCenter/free");
 		return mav;
 	}
-		
-	//자유게시판에 넣기위해 json목록 불러오기
-	@GetMapping("/jsonFreeSel")
-	@ResponseBody
-	public List<BoardVO> jsonFreeSel(@ModelAttribute BoardVO bVO) {
-		logger.info("jsonFreeSel 호출 성공");
-		List<BoardVO> jsonFreeSel = null;
-		jsonFreeSel = memberLogic.jsonFreeSel(bVO);
-		return jsonFreeSel;
-	}	
 	
 	// 자유게시판 글 작성화면
 	@GetMapping("/freeWrite")
@@ -135,7 +224,7 @@ public class MemberController {
 		mav.setViewName("prohome/userPage/serviceCenter/freeWrite");
 		return mav;
 	}
-	
+		
 	// 자유 글 Insert성공
 	@PostMapping("/freeIns")
 	public ModelAndView freeIns(@ModelAttribute BoardVO bVO) {
@@ -146,39 +235,85 @@ public class MemberController {
 		return mav;
 	}
 	
-	// 글 조회
-	@GetMapping("/read")
-	public ModelAndView getRead(@RequestParam("base_post_number") int base_post_number, Model model, BoardVO vo2) throws Exception {
+	//자유게시판에 넣기위해 json목록 불러오기
+	@GetMapping("/jsonFreeSel")
+	@ResponseBody
+	public List<BoardVO> jsonFreeSel(@ModelAttribute BoardVO bVO) {
+		logger.info("jsonFreeSel 호출 성공");
+		List<BoardVO> jsonFreeSel = null;
+		jsonFreeSel = memberLogic.jsonFreeSel(bVO);
+		return jsonFreeSel;
+	}	
+	
+	// 자유게시판 글 조회
+	@GetMapping("/freeRead")
+	public ModelAndView freeRead(@RequestParam("base_post_number") int base_post_number, Model model, BoardVO bVO2) throws Exception {
 		logger.info("get read");
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("prohome/userPage/serviceCenter/read");
-		BoardVO vo = memberLogic.read(base_post_number);		
-		memberDao.viewCount(vo2);		
-		model.addAttribute("read", vo);		
+		mav.setViewName("prohome/userPage/serviceCenter/freeRead");
+		BoardVO vo = memberLogic.boardRead(base_post_number);		
+		memberDao.boardViewCount(bVO2);		
+		model.addAttribute("boardRead", vo);		
 		return mav;
-		
 	}
 	
-	//글 수정
-	@GetMapping("/edit")
-	public ModelAndView edit(@RequestParam("base_post_number") int base_post_number, Model model) {
+	//자유게시판 글 수정 화면
+	@GetMapping("/freeEdit")
+	public ModelAndView freeEdit(@RequestParam("base_post_number") int base_post_number, Model model) {
 		logger.info("글 수정됨");
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("prohome/userPage/serviceCenter/edit");
-		BoardVO vo = memberLogic.read(base_post_number);
-		model.addAttribute("edit", vo);
+		mav.setViewName("prohome/userPage/serviceCenter/freeEdit");
+		BoardVO bVO = memberLogic.boardRead(base_post_number);
+		model.addAttribute("boardUpd", bVO);
 		return mav;
 	}
-		
-	// 질문 글 Update성공
-	@PostMapping("/questionUpd")
-	public ModelAndView questionUpd(@ModelAttribute BoardVO bVO) {
-		logger.info("questionUpd 호출 성공");
-		memberLogic.questionUpd(bVO);
+	
+	// 질문 글 수정 성공
+	@PostMapping("/freeUpd")
+	public ModelAndView freeUpd(@ModelAttribute BoardVO bVO) {
+		logger.info("freeUpd 호출 성공");
+		memberLogic.boardUpd(bVO);
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("prohome/userPage/serviceCenter/question");
+		mav.setViewName("prohome/userPage/serviceCenter/free");
 		return mav;
 	}
+	
+	// 자유게시판 글 Delete 성공
+	@PostMapping("/freeDel")
+	public ModelAndView freeDel(@ModelAttribute BoardVO bVO) {
+		logger.info("freeDel 호출 성공");
+		memberLogic.freeDel(bVO);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("prohome/userPage/serviceCenter/free");
+		return mav;
+	}
+///////////////////////////////자유 게시판 끝/////////////////////////////////////////////	
+	
+	
+	//id, pw 찾기화면
+	@GetMapping("/id_pw_find")
+	public ModelAndView id_pw_find() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("prohome/userPage/serviceCenter/id_pw_find");
+		return mav;
+	}
+	
+	//1:1 문의 화면
+	@GetMapping("/inquiry")
+	public ModelAndView inquiry() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("prohome/userPage/serviceCenter/inquiry");
+		return mav;
+	}
+	
+	// 제휴문의 페이지
+	@GetMapping("/contact")
+	public ModelAndView contact() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("prohome/userPage/serviceCenter/contact");
+		return mav;
+	}
+	
 	// 테스트
 		@GetMapping("/test2")
 		public ModelAndView test2() {

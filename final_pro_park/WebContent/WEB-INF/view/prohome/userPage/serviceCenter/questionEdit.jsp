@@ -4,11 +4,33 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
 <%@ include file="../common/easyui.jsp"%>
+<script type="text/javascript">
+jQuery.noConflict(); 
+var j$ = jQuery;
+	/* 글 수정 버튼 누르면 처리 시작 */
+	function save() {
+		var aa = document.location.href;
+		var bb;
+		bb=aa.split("?");
+		//폼 전송 처리함.
+		j$("#f_save").attr("method", "POST");
+		j$("#f_save").attr("action", "questionUpd.park?" + bb[1]);
+		j$("#f_save").submit();
+	}
+	/* 글 수정 버튼 누르면 처리 끝 */
+</script>
 </head>
 <body>
+<script type="text/javascript">
+jQuery.noConflict(); 
+var j$ = jQuery;
+j$(document).ready(function (){//이름이 없는 함수 선언
+
+});
+</script>
 <%@ include file="../common/header.jsp"%>
+
 <!-- 헤더 밑 메뉴 그림 시작 -->
 	<section id="header-page" class="header-margin-base">
 		<div class="skyline">
@@ -19,7 +41,7 @@
 			<span class="cover"></span>
 			<div class="container header-text">
 				<div>
-					<h1 class="title">1:1 문의</h1>
+					<h1 class="title">질문게시판</h1>
 				</div>
 				<div>
 					<h2 class="sub-title">궁금한점을 질문하세요</h2>
@@ -31,7 +53,7 @@
 				<ol class="breadcrumb">
 					<li><a href="usermain.park"><i class="fa fa-home"></i></a></li>
 					<li><a href="#">고객센터</a></li>
-					<li class="active">1:1 문의</li>
+					<li class="active">질문게시판</li>
 				</ol>
 			</div>
 		</div>
@@ -52,58 +74,68 @@
 					<i class="icon fa fa-user-secret"></i> 아이디/비밀번호 찾기</a></li>
 					<li><a class="faq-button" href="notice.park">
 					<i class="icon fa fa-home"></i> 공지사항</a></li>
-					<li><a class="faq-button" href="question.park">
+					<li><a class="faq-button active" href="question.park">
 					<i class="icon fa fa-heart"></i> 질문게시판</a></li>
 					<li><a class="faq-button" href="free.park">
 					<i class="icon fa fa-plus"></i> 자유게시판</a></li>
-					<li><a class="faq-button active" href="inquiry.park">
+					<li><a class="faq-button" href="inquiry.park">
 					<i class="icon fa fa-plus"></i> 1:1문의</a></li>
 					<li><a class="faq-button" href="contact.park">
 					<i class="icon fa fa-plus"></i> 제휴문의</a></li>
 				</ul>
 			</div>
 			<!-- 왼쪽 메뉴리스트 끝 -->
-			<!-- 질문게시판 DataGrid 테이블 시작 -->
 			<div class="col-sm-9 col-md-9">
-			<div class="section-title line-style no-margin"><h3 class="title">1:1 문의</h3></div>
-			
-			<div class="col-md-12">
-						<form id="f_save" method="post">
+				<div class="col-md-12">
+					<form id="f_save" method="post">
 							<div class="row">
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<label for="name">이름</label>
-									<input type="text" class="margin-bottom form-control" id="base_writer" name="base_writer" placeholder="First &amp; Last Name .." required="">
+									<label for="text">작성자</label>
+									<input type="text" class="margin-bottom form-control" id="base_writer" name="base_writer" value="${boardUpd.base_writer}" readonly="readonly">
 								</div>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<label for="password">비밀번호</label>
-									<input type="password" class="margin-bottom form-control" id="base_post_pw" name="base_post_pw" placeholder="password" required="">
+									<label for="text">작성일</label>
+									<input type="text" class="margin-bottom form-control" id="base_created_date" name="base_created_date" value="${boardUpd.base_created_date}" readonly="readonly">
 								</div>
 								<div class="col-md-12">
-									<label for="subject">제목</label>
-									<input type="text" class="margin-bottom form-control" id="base_title" name="base_title" placeholder="Subject" required="">
+									<label for="text">제목</label>
+									<input type="text" class="margin-bottom form-control" id="base_title" name="base_title" value="${boardUpd.base_title}">
 								</div>
 								<div class="col-md-12">
-									<label for="text-message">내용</label>
-									<textarea class="margin-bottom form-control" rows="10" name="base_contents" id="base_contents" required=""></textarea>
+									<label for="text">내용</label>
+									<textarea class="margin-bottom form-control" rows="10" name="base_contents" id="base_contents">${boardUpd.base_contents}</textarea>
 								</div>
 							</div>
 							<br>
 							<span style="float:right">
-							<input id="submit" name="submit" type="submit" value="등록" class="btn btn-default" onClick="save()">
-						<!-- 글 취소 버튼 시작-->
-							<a href="question.park" class="btn btn-default" >취소</a></span>
-						<!-- 글 취소 버튼 끝-->
+						<!-- 글 수정 버튼 시작 -->	
+							<input id="submit" name="submit" type="submit" value="완료" class="btn btn-default" onClick="save()">
+						<!-- 글 수정 버튼 끝 -->
+						<!-- 글 목록 버튼 시작-->
+							<a href="question.park" class="btn btn-default" >목록으로</a></span>
+						<!-- 글 목록 버튼 끝-->
 						</form>
+						
+						
+						
 					</div>
-			
-			
-			</div>
-		</div>
-	</div>
-	<!-- 본문내용 전체 묶기 끝-->
+			</div></div></div>
+	
 	<br>
 	<br>
 	<br>
+
 	<%@ include file="../common/bottom.jsp"%>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+

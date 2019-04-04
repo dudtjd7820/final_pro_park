@@ -29,7 +29,7 @@
 		<div id="breadcrumb">
 			<div class="container">
 				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-home"></i></a></li>
+					<li><a href="usermain.park"><i class="fa fa-home"></i></a></li>
 					<li><a href="#">고객센터</a></li>
 					<li class="active">아이디 / 비밀번호 찾기</li>
 				</ol>
@@ -57,48 +57,113 @@
 					<li><a class="faq-button" href="question.park"> <i
 							class="icon fa fa-heart"></i> 질문게시판
 					</a></li>
-					<li><a class="faq-button" href="new-property.html"> <i
+					<li><a class="faq-button" href="free.park"> <i
 							class="icon fa fa-plus"></i> 자유게시판
 					</a></li>
 					<li><a class="faq-button" href="inquiry.park"> <i
 							class="icon fa fa-plus"></i> 1:1문의
 					</a></li>
-					<li><a class="faq-button" href="new-property.html"> <i
+					<li><a class="faq-button" href="contact.park"> <i
 							class="icon fa fa-plus"></i> 제휴문의
 					</a></li>
 				</ul>
 			</div>
 			<!-- 왼쪽 메뉴리스트 끝 -->
 			<div class="col-sm-9 col-md-9">
-				<!-- 아이디/비밀번호 찾기 메뉴 시작 -->
-				<div class="section-title line-style no-margin">
-					<h3 class="title">아이디/비밀번호 찾기</h3>
-				</div>
-				<div class="col-md-6">
-					<div class="tabs" id="tab">
-						<ul class="tab-button">
-							<li class="active"><a href="#" data-target="tab-a">아이디
-									찾기</a></li>
-							<li class=""><a href="#" data-target="tab-b">비밀번호 찾기</a></li>
-						</ul>
-						<!-- /.tab-button -->
-						<div id="aa" class="easyui-accordion"
-							style="width: 300px; height: 200px;">
-							<div title="Title1" data-options="iconCls:'icon-save'"
-								style="overflow: auto; padding: 10px;">
-								<h3 style="color: #0099FF;">Accordion for jQuery</h3>
-								<p>Accordion is a part of easyui framework for jQuery. It
-									lets you define your accordion component on web page more
-									easily.</p>
+			<section class="shortcode-box" id="shortcode-tabs">
+							<div class="section-title line-style no-margin"><h3 class="title">아이디/비밀번호 찾기</h3></div>
+							<div class="row">
+								
+								<div class="col-md-12">
+								<div role="tabpanel">
+
+								  <!-- Nav tabs -->
+								  <ul class="nav nav-tabs" role="tablist">
+								    <li role="presentation" class="active"><a href="#find_id" aria-controls="home" role="tab" data-toggle="tab">아이디 찾기</a></li>
+								    <li role="presentation"><a href="#find_pw" aria-controls="profile" role="tab" data-toggle="tab">비밀번호 찾기</a></li>
+								  </ul>
+								
+								  <!-- Tab panes -->
+								  <div class="tab-content">
+								    <div role="tabpanel" class="tab-pane active" id="#find_id">
+									
+									
+									<!--  -->
+									<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+								  <div class="panel panel-default">
+								    <div class="panel-heading" role="tab" id="headingOne">
+								      <h4 class="panel-title">
+								        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+								        	핸드폰 번호로 찾기
+								        </a>
+								      </h4>
+								    </div>
+								    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+								      <div class="panel-body">
+								      	핸드폰번호 입력공간
+								      </div>
+								    </div>
+								  </div>
+								  <div class="panel panel-default">
+								    <div class="panel-heading" role="tab" id="headingTwo">
+								      <h4 class="panel-title">
+								        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+								        	이메일 주소로 찾기
+								        </a>
+								      </h4>
+								    </div>
+								    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+								      <div class="panel-body">
+								      	이메일주소 입력공간
+								      </div>
+								    </div>
+								  </div>
+								</div>
+									<!--  -->
+									
+									
+									
+									</div>
+								    <div role="tabpanel" class="tab-pane" id="#find_pw">
+<!--  -->
+									<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+								  <div class="panel panel-default">
+								    <div class="panel-heading" role="tab" id="headingOne">
+								      <h4 class="panel-title">
+								        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+								        	핸드폰 번호로 찾기222
+								        </a>
+								      </h4>
+								    </div>
+								    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+								      <div class="panel-body">
+								      	핸드폰번호 입력공간
+								      </div>
+								    </div>
+								  </div>
+								  <div class="panel panel-default">
+								    <div class="panel-heading" role="tab" id="headingTwo">
+								      <h4 class="panel-title">
+								        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+								        	이메일 주소로 찾기
+								        </a>
+								      </h4>
+								    </div>
+								    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+								      <div class="panel-body">
+								      	이메일주소 입력공간
+								      </div>
+								    </div>
+								  </div>
+								</div>
+									<!--  -->
+									</div>
+								  </div>
+								</div>
+								</div>
 							</div>
-							<div title="Title2"
-								data-options="iconCls:'icon-reload',selected:true"
-								style="padding: 10px;">content2</div>
-							<div title="Title3">content3</div>
-						</div>
-					</div>
-				</div>
-			</div>
+
+						</section></div>
 			<!-- 아이디/비밀번호 찾기 메뉴 끝 -->
 
 		</div>

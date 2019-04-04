@@ -15,7 +15,7 @@ var j$ = jQuery;
 		bb=aa.split("?");
 		//폼 전송 처리함.
 		j$("#f_save").attr("method", "POST");
-		j$("#f_save").attr("action", "questionUpd.park?" + bb[1]);
+		j$("#f_save").attr("action", "noticeUpd.park?" + bb[1]);
 		j$("#f_save").submit();
 	}
 	/* 글 수정 버튼 누르면 처리 끝 */
@@ -41,19 +41,19 @@ j$(document).ready(function (){//이름이 없는 함수 선언
 			<span class="cover"></span>
 			<div class="container header-text">
 				<div>
-					<h1 class="title">질문게시판</h1>
+					<h1 class="title">공지사항</h1>
 				</div>
 				<div>
-					<h2 class="sub-title">궁금한점을 질문하세요</h2>
+					<h2 class="sub-title">공지사항 입니다</h2>
 				</div>
 			</div>
 		</div>
 		<div id="breadcrumb">
 			<div class="container">
 				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-home"></i></a></li>
+					<li><a href="usermain.park"><i class="fa fa-home"></i></a></li>
 					<li><a href="#">고객센터</a></li>
-					<li class="active">질문게시판</li>
+					<li class="active">공지사항</li>
 				</ol>
 			</div>
 		</div>
@@ -72,15 +72,15 @@ j$(document).ready(function (){//이름이 없는 함수 선언
 				<ul class="block-menu" style="width: auto;">
 					<li><a class="faq-button" href="id_pw_find.park">
 					<i class="icon fa fa-user-secret"></i> 아이디/비밀번호 찾기</a></li>
-					<li><a class="faq-button" href="notice.park">
+					<li><a class="faq-button active" href="notice.park">
 					<i class="icon fa fa-home"></i> 공지사항</a></li>
-					<li><a class="faq-button active" href="question.park">
+					<li><a class="faq-button" href="question.park">
 					<i class="icon fa fa-heart"></i> 질문게시판</a></li>
 					<li><a class="faq-button" href="free.park">
 					<i class="icon fa fa-plus"></i> 자유게시판</a></li>
 					<li><a class="faq-button" href="inquiry.park">
 					<i class="icon fa fa-plus"></i> 1:1문의</a></li>
-					<li><a class="faq-button" href="new-property.html">
+					<li><a class="faq-button" href="contact.park">
 					<i class="icon fa fa-plus"></i> 제휴문의</a></li>
 				</ul>
 			</div>
@@ -91,19 +91,19 @@ j$(document).ready(function (){//이름이 없는 함수 선언
 							<div class="row">
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<label for="text">작성자</label>
-									<input type="text" class="margin-bottom form-control" id="base_writer" name="base_writer" value="${edit.base_writer}" readonly="readonly">
+									<input type="text" class="margin-bottom form-control" id="base_writer" name="base_writer" value="${boardUpd.base_writer}" readonly="readonly">
 								</div>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<label for="text">작성일</label>
-									<input type="text" class="margin-bottom form-control" id="base_created_date" name="base_created_date" value="${edit.base_created_date}" readonly="readonly">
+									<input type="text" class="margin-bottom form-control" id="base_created_date" name="base_created_date" value="${boardUpd.base_created_date}" readonly="readonly">
 								</div>
 								<div class="col-md-12">
 									<label for="text">제목</label>
-									<input type="text" class="margin-bottom form-control" id="base_title" name="base_title" value="${edit.base_title}">
+									<input type="text" class="margin-bottom form-control" id="base_title" name="base_title" value="${boardUpd.base_title}">
 								</div>
 								<div class="col-md-12">
 									<label for="text">내용</label>
-									<textarea class="margin-bottom form-control" rows="10" name="base_contents" id="base_contents">${edit.base_contents}</textarea>
+									<textarea class="margin-bottom form-control" rows="10" name="base_contents" id="base_contents">${boardUpd.base_contents}</textarea>
 								</div>
 							</div>
 							<br>
@@ -112,7 +112,7 @@ j$(document).ready(function (){//이름이 없는 함수 선언
 							<input id="submit" name="submit" type="submit" value="완료" class="btn btn-default" onClick="save()">
 						<!-- 글 수정 버튼 끝 -->
 						<!-- 글 목록 버튼 시작-->
-							<a href="question.park" class="btn btn-default" >목록으로</a></span>
+							<a href="notice.park" class="btn btn-default" >목록으로</a></span>
 						<!-- 글 목록 버튼 끝-->
 						</form>
 						

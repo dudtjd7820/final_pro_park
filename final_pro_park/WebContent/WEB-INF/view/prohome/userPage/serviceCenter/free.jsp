@@ -5,6 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <%@ include file="../common/easyui.jsp"%>
+<script type="text/javascript">
+
+</script>
 </head>
 <body>
 <script type="text/javascript">
@@ -34,7 +37,17 @@ j$(document).ready(function (){//이름이 없는 함수 선언
 
 			});	
 			}
-		});		
+		});	
+
+	j$('#dg_board').datagrid({
+		onClickCell: function(index,field,value){
+			//선택한 글의 번호
+			var number = j$('#dg_board').datagrid('getRows')[index].base_post_number;
+			var count = j$('#dg_board').datagrid('getRows')[index].base_view_count;
+			location.href="freeRead.park?base_post_number=" + number + "&base_view_count=" + count;
+			
+		}
+	});		
 });
 
 </script>
@@ -59,7 +72,7 @@ j$(document).ready(function (){//이름이 없는 함수 선언
 		<div id="breadcrumb">
 			<div class="container">
 				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-home"></i></a></li>
+					<li><a href="usermain.park"><i class="fa fa-home"></i></a></li>
 					<li><a href="#">고객센터</a></li>
 					<li class="active">자유게시판</li>
 				</ol>
@@ -88,7 +101,7 @@ j$(document).ready(function (){//이름이 없는 함수 선언
 					<i class="icon fa fa-plus"></i> 자유게시판</a></li>
 					<li><a class="faq-button" href="inquiry.park">
 					<i class="icon fa fa-plus"></i> 1:1문의</a></li>
-					<li><a class="faq-button" href="new-property.html">
+					<li><a class="faq-button" href="contact.park">
 					<i class="icon fa fa-plus"></i> 제휴문의</a></li>
 				</ul>
 			</div>
@@ -103,7 +116,7 @@ j$(document).ready(function (){//이름이 없는 함수 선언
 						<tr>
 							<th
 								data-options="field:'base_post_number',width:60,align:'center'">번호</th>
-							<th data-options="field:'base_title',width:350,align:'center'">제목</th>
+							<th data-options="field:'base_title',width:420,align:'center'">제목</th>
 							<th data-options="field:'base_writer',width:130,align:'center'">작성자</th>
 							<th
 								data-options="field:'base_created_date',width:140,align:'center'">작성일</th>

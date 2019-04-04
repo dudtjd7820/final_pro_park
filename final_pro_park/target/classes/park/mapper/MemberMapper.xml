@@ -10,8 +10,36 @@
 
 
 <!-- 슬기 -->
+<!-- //////////////////////////////////////공지 게시판 시작//////////////////////////////////////////////////////// -->
+<!-- 공지사항 글 목록 Select문--> 
+<select id="jsonNoticeSel" parameterType="BoardVO" resultType="BoardVO">
+	select base_post_number, base_title, base_writer, base_created_date, base_view_count from final_2.BASE_BOARD
+	where base_post_division = '공지' 
+	<if test='searchCombo.equals("base_writer")'>
+	and base_writer LIKE '%'||#{searchText}||'%'
+	</if>
+	<if test='searchCombo.equals("base_title")'>
+	and base_title LIKE '%'||#{searchText}||'%'
+	</if>
+	order by base_post_number
+</select>
 
-<!-- 질문게시판 글 목록 Select문-->
+<!-- 공지사항 글 작성 Insert문 -->
+<insert id="noticeIns">
+	insert into base_board (base_post_number, base_post_division, base_writer, base_title, base_contents, base_created_date, base_post_pw)
+	values(seq_board_post_number.nextval, '공지', #{base_writer}, #{base_title}, #{base_contents},to_char(sysdate,'YYYY-MM-DD HH24:mi:ss'), #{base_post_pw})
+</insert>
+
+<!-- 공지사항 글 Delete문 -->
+<delete id="noticeDel1">
+	delete final_2.notice_board where base_post_number= #{base_post_number}
+</delete>
+<delete id="noticeDel2">
+	delete final_2.BASE_BOARD where base_post_number= #{base_post_number}
+</delete>
+<!-- //////////////////////////////////////공지 게시판 끝//////////////////////////////////////////////////////// -->
+<!-- //////////////////////////////////////질문 게시판 시작//////////////////////////////////////////////////////// -->
+<!-- 질문게시판 글 목록 Select문--> 
 <select id="jsonQuestionSel" parameterType="BoardVO" resultType="BoardVO">
 	select base_post_number, base_title, base_writer, base_created_date, base_view_count from final_2.BASE_BOARD
 	where base_post_division = '질문' 
@@ -30,11 +58,15 @@
 	values(seq_board_post_number.nextval, '질문', #{base_writer}, #{base_title}, #{base_contents},to_char(sysdate,'YYYY-MM-DD HH24:mi:ss'), #{base_post_pw})
 </insert>
 
-<!-- 질문게시판 글 Update문 -->
-<update id="questionUpd">
-	update final_2.BASE_BOARD set base_title=#{base_title}, base_contents= #{base_contents} where base_post_number= #{base_post_number}
-</update>
-
+<!-- 질문게시판 글 Delete문 -->
+<delete id="questionDel1">
+	delete final_2.question_board where base_post_number= #{base_post_number}
+</delete>
+<delete id="questionDel2">
+	delete final_2.BASE_BOARD where base_post_number= #{base_post_number}
+</delete>
+<!-- //////////////////////////////////////질문 게시판 끝//////////////////////////////////////////////////////// -->
+<!-- //////////////////////////////////////자유 게시판 시작//////////////////////////////////////////////////////// -->
 <!-- 자유게시판 글 목록 Select문-->
 <select id="jsonFreeSel" parameterType="BoardVO" resultType="BoardVO">
 	select base_post_number, base_title, base_writer, base_created_date, base_view_count from final_2.BASE_BOARD 
@@ -54,17 +86,28 @@
 	values(seq_board_post_number.nextval, '자유', #{base_writer}, #{base_title}, #{base_contents},to_char(sysdate,'YYYY-MM-DD HH24:mi:ss'), #{base_post_pw})
 </insert>
 
-<!-- 글 읽기 -->
-<select id="read" resultType="BoardVO">
+<!-- 자유게시판 글 Delete문 -->
+<delete id="freeDel">
+	delete final_2.BASE_BOARD where base_post_number= #{base_post_number}
+</delete>
+<!-- //////////////////////////////////////자유 게시판 끝//////////////////////////////////////////////////////// -->
+<!-- //////////////////////////////////////게시판 공통 쿼리문 시작//////////////////////////////////////////////////////// -->
+<!-- 게시판 글 읽기 -->
+<select id="boardRead" resultType="BoardVO">
 	select base_writer, base_created_date, base_title, base_contents, base_post_pw from final_2.BASE_BOARD where base_post_number = #{base_post_number}
 </select>
 
-<!-- 글 조회수 증가 -->
-<update id="viewCount">
+<!-- 게시판 글 조회수 증가 -->
+<update id="boardViewCount">
 	update final_2.BASE_BOARD set base_view_count = #{base_view_count}+1 where base_post_number = #{base_post_number}
 </update>
 
+<!-- 게시판 글 Update문 -->
+<update id="boardUpd">
+	update final_2.BASE_BOARD set base_title=#{base_title}, base_contents= #{base_contents} where base_post_number= #{base_post_number}
+</update>
 
+<!-- //////////////////////////////////////게시판 공통 쿼리문 끝//////////////////////////////////////////////////////// -->
 <!-- 슬기 -->
 
 

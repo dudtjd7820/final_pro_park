@@ -1,7 +1,6 @@
 package park.mvc.logic;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +27,26 @@ public class MemberLogic {
 //
 //
 //	<!-- 슬기 -->
+///////////////////////////////공지 게시판 시작///////////////////////////////////////////////	
+	//공지 글 jsonSelect	
+	public List<BoardVO> jsonNoticeSel(BoardVO bVO) {
+	logger.info("jsonNoticeSel 호출 성공");
+	List<BoardVO> jsonNoticeSel = null;
+	jsonNoticeSel = memberDao.jsonNoticeSel(bVO);
+	return jsonNoticeSel;
+	}
+	//공지 글 Insert
+	public void noticeIns(BoardVO bVO) {
+	logger.info("(MemberLogic) noticeIns 호출 성공");
+	memberDao.noticeIns(bVO);
+	}
+	//공지 글 Delete
+	public void noticeDel(BoardVO bVO) {
+	logger.info("(MemberLogic) noticeDel 호출 성공");
+	memberDao.noticeDel(bVO);
+	}
+///////////////////////////////공지 게시판 끝///////////////////////////////////////////////
+///////////////////////////////질문 게시판 시작///////////////////////////////////////////////	
 	//질문 글 jsonSelect	
 	public List<BoardVO> jsonQuestionSel(BoardVO bVO) {
 		logger.info("jsonQuestionSel 호출 성공");
@@ -40,28 +59,40 @@ public class MemberLogic {
 		logger.info("(MemberLogic) questionIns 호출 성공");
 		memberDao.questionIns(bVO);
 	}
-	//질문 글 Update
-	public void questionUpd(BoardVO bVO) {
-		logger.info("(MemberLogic) questionUpd 호출 성공");
-		memberDao.questionUpd(bVO);
+	//질문 글 Delete
+	public void questionDel(BoardVO bVO) {
+		logger.info("(MemberLogic) questionDel 호출 성공");
+		memberDao.questionDel(bVO);
 	}
+///////////////////////////////질문 게시판 끝///////////////////////////////////////////////
+///////////////////////////////자유 게시판 시작///////////////////////////////////////////////
 	//자유게시판 jsonSelect	
 	public List<BoardVO> jsonFreeSel(BoardVO bVO) {
 		logger.info("jsonFreeSel 호출 성공");
 		List<BoardVO> jsonFreeSel = null;
 		jsonFreeSel = memberDao.jsonFreeSel(bVO);
 		return jsonFreeSel;
-	}	
-	//질문 글 Insert
+	}
+	//자유게시판 글 Insert
 	public void freeIns(BoardVO bVO) {
 		logger.info("(MemberLogic) freeIns 호출 성공");
 		memberDao.freeIns(bVO);
 	}
-	public BoardVO read(int base_post_number) {
-		return memberDao.read(base_post_number);
-	}	
-		
-	
+	//자유게시판 글  Delete
+	public void freeDel(BoardVO bVO) {
+		logger.info("(MemberLogic) freeDel 호출 성공");
+		memberDao.freeDel(bVO);
+	}
+///////////////////////////////질문 게시판 끝///////////////////////////////////////////////		
+	//질문 글 Read
+	public BoardVO boardRead(int base_post_number) {
+		return memberDao.boardRead(base_post_number);
+	}
+	//질문 글 Update
+	public void boardUpd(BoardVO bVO) {
+		logger.info("(MemberLogic) boardUpd 호출 성공");
+		memberDao.boardUpd(bVO);
+	}
 //	<!-- 슬기 -->
 //
 //

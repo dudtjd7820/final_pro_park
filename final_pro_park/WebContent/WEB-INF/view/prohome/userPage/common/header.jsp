@@ -128,7 +128,7 @@
 								<li><a href="question.park">질문게시판</a></li>	
 								<li><a href="free.park">자유게시판</a></li>	
 								<li><a href="inquiry.park">1:1문의</a></li>	
-								<li><a href="about.html">제휴문의</a></li>	
+								<li><a href="contact.park">제휴문의</a></li>	
 							</ul>
 						</li>
 						

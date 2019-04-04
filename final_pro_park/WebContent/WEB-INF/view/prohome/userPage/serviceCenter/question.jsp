@@ -46,7 +46,7 @@ j$(document).ready(function (){//이름이 없는 함수 선언
 			//선택한 글의 번호
 			var number = j$('#dg_board').datagrid('getRows')[index].base_post_number;
 			var count = j$('#dg_board').datagrid('getRows')[index].base_view_count;
-			location.href="read.park?base_post_number=" + number + "&base_view_count=" + count;
+			location.href="questionRead.park?base_post_number=" + number + "&base_view_count=" + count;
 			
 		}
 	});	
@@ -77,7 +77,7 @@ j$(document).ready(function (){//이름이 없는 함수 선언
 		<div id="breadcrumb">
 			<div class="container">
 				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-home"></i></a></li>
+					<li><a href="usermain.park"><i class="fa fa-home"></i></a></li>
 					<li><a href="#">고객센터</a></li>
 					<li class="active">질문게시판</li>
 				</ol>
@@ -106,7 +106,7 @@ j$(document).ready(function (){//이름이 없는 함수 선언
 					<i class="icon fa fa-plus"></i> 자유게시판</a></li>
 					<li><a class="faq-button" href="inquiry.park">
 					<i class="icon fa fa-plus"></i> 1:1문의</a></li>
-					<li><a class="faq-button" href="new-property.html">
+					<li><a class="faq-button" href="contact.park">
 					<i class="icon fa fa-plus"></i> 제휴문의</a></li>
 				</ul>
 			</div>
@@ -141,7 +141,7 @@ j$(document).ready(function (){//이름이 없는 함수 선언
 				&nbsp;&nbsp;&nbsp;&nbsp;
 				<!-- 글쓰기 버튼 시작-->
 				<span style="float:right">
-				<a href="questWrite.park" class="btn btn-default btn-lg"
+				<a href="questionWrite.park" class="btn btn-default btn-lg"
 					style="width: 120px" >글 작성</a></span>
 				<!-- 글쓰기 버튼 끝-->
 			</div>

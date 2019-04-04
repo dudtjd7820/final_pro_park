@@ -20,7 +20,7 @@ j$(document).ready(function (){//이름이 없는 함수 선언
 			handler: function(e){
 				j$("#dg_board").datagrid({
 					method:"get",
-					url:"jsonFreeSel.park?searchCombo=" + j$("#searchCombo").val() + "&searchText=" + j$("#searchText").val()
+					url:"jsonNoticeSel.park?searchCombo=" + j$("#searchCombo").val() + "&searchText=" + j$("#searchText").val()
 				});
 			}
 		}]
@@ -32,11 +32,21 @@ j$(document).ready(function (){//이름이 없는 함수 선언
 				//t.textbox('setValue', $(this).val());
 			j$("#dg_board").datagrid({
 				method:"get",
-				url:"jsonQuestionSel.park?searchCombo=" + j$("#searchCombo").val() + "&searchText=" + j$("#searchText").val()
+				url:"jsonNoticeSel.park?searchCombo=" + j$("#searchCombo").val() + "&searchText=" + j$("#searchText").val()
 
 			});	
 			}
-		});		
+		});	
+
+	j$('#dg_board').datagrid({
+		onClickCell: function(index,field,value){
+			//선택한 글의 번호
+			var number = j$('#dg_board').datagrid('getRows')[index].base_post_number;
+			var count = j$('#dg_board').datagrid('getRows')[index].base_view_count;
+			location.href="noticeRead.park?base_post_number=" + number + "&base_view_count=" + count;
+			
+		}
+	});		
 });
 
 </script>
@@ -61,7 +71,7 @@ j$(document).ready(function (){//이름이 없는 함수 선언
 		<div id="breadcrumb">
 			<div class="container">
 				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-home"></i></a></li>
+					<li><a href="usermain.park"><i class="fa fa-home"></i></a></li>
 					<li><a href="#">고객센터</a></li>
 					<li class="active">공지사항</li>
 				</ol>
@@ -90,7 +100,7 @@ j$(document).ready(function (){//이름이 없는 함수 선언
 					<i class="icon fa fa-plus"></i> 자유게시판</a></li>
 					<li><a class="faq-button" href="inquiry.park">
 					<i class="icon fa fa-plus"></i> 1:1문의</a></li>
-					<li><a class="faq-button" href="new-property.html">
+					<li><a class="faq-button" href="contact.park">
 					<i class="icon fa fa-plus"></i> 제휴문의</a></li>
 				</ul>
 			</div>
@@ -98,17 +108,17 @@ j$(document).ready(function (){//이름이 없는 함수 선언
 			<!-- 공지사항 DataGrid 테이블 시작 -->
 			<div class="col-sm-9 col-md-9">
 			<div class="section-title line-style no-margin"><h3 class="title">공지사항</h3></div>
-				<table class="easyui-datagrid" 
-					style="width: 850px; height: 500px; margin: auto; text-align: center;"
-					data-options="singleSelect:true,collapsible:true,url:'datagrid_data1.json',method:'get'">
+				<table id="dg_board" class="easyui-datagrid" 
+					style="width: 850px; height: 500px"
+					data-options="singleSelect:true,collapsible:true,url:'jsonNoticeSel.park',method:'get'">
 					<thead>
 						<tr>
 							<th
 								data-options="field:'base_post_number',width:60,align:'center'">번호</th>
-							<th data-options="field:'base_title',width:500,align:'center'">제목</th>
-							<th data-options="field:'base_writer',width:100,align:'center'">작성자</th>
+							<th data-options="field:'base_title',width:420,align:'center'">제목</th>
+							<th data-options="field:'base_writer',width:130,align:'center'">작성자</th>
 							<th
-								data-options="field:'base_created_date',width:100,align:'center'">작성일</th>
+								data-options="field:'base_created_date',width:140,align:'center'">작성일</th>
 							<th
 								data-options="field:'base_view_count',width:60,align:'center'">조회수</th>
 						</tr>
@@ -122,6 +132,11 @@ j$(document).ready(function (){//이름이 없는 함수 선언
 				</select> 
 				<input id="searchText" class="easyui-textbox" style="width:250px">
 				<!-- 검색 ComboBox 끝 -->
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<!-- 글쓰기 버튼 시작-->
+				<span style="float:right">
+				<a href="noticeWrite.park" class="btn btn-default btn-lg" style="width: 120px" >글 작성</a></span>
+				<!-- 글쓰기 버튼 끝-->
 			</div>
 		</div>
 	</div>

@@ -32,6 +32,36 @@ public class MemberDao {
 //
 //
 //	<!-- 슬기 -->
+///////////////////////////////공지 게시판 시작///////////////////////////////////////////////
+	//공지사항 글 jsonSelect
+	public List<BoardVO> jsonNoticeSel(BoardVO bVO) {
+	logger.info("jsonNoticeSel 호출 성공");
+	//NullPointerException의 대상이 되는 클래스 이므로 인스턴스화를 완성함.
+	//주의사항 : myBatis에서 자동으로 Map담아주는데 이 때 키값은 대문자가 디폴트값.
+	List<BoardVO> jsonNoticeSel = 
+	new ArrayList<BoardVO>();
+	try {
+		jsonNoticeSel = sqlSessionTemplate.selectList("member.jsonNoticeSel", bVO);
+	logger.info("size:"+jsonNoticeSel.size());
+	} catch (Exception e) {
+	e.printStackTrace();
+	}
+	return jsonNoticeSel;
+	}
+	//공지사항 글 Insert
+	public void noticeIns(BoardVO bVO) {
+	logger.info("(MemberDao) noticeIns 호출 성공");
+	sqlSessionTemplate.insert("member.noticeIns", bVO);
+	}
+	
+	//공지사항 글 Delete
+	public void noticeDel(BoardVO bVO) {
+	logger.info("(MemberDao) noticeDel 호출 성공");
+	sqlSessionTemplate.delete("member.noticeDel1", bVO);
+	sqlSessionTemplate.delete("member.noticeDel2", bVO);
+	}
+///////////////////////////////공지 게시판 끝///////////////////////////////////////////////
+///////////////////////////////질문 게시판 시작///////////////////////////////////////////////
 	//질문 글 jsonSelect
 	public List<BoardVO> jsonQuestionSel(BoardVO bVO) {
 		logger.info("jsonQuestionSel 호출 성공");
@@ -52,11 +82,15 @@ public class MemberDao {
 		logger.info("(MemberDao) questionIns 호출 성공");
 		sqlSessionTemplate.insert("member.questionIns", bVO);
 	}
-	//질문 글 Update
-	public void questionUpd(BoardVO bVO) {
-		logger.info("(MemberDao) questionUpd 호출 성공");
-		sqlSessionTemplate.update("member.questionUpd", bVO);
+	
+	//질문 글 Delete
+	public void questionDel(BoardVO bVO) {
+		logger.info("(MemberDao) questionDel 호출 성공");
+		sqlSessionTemplate.delete("member.questionDel1", bVO);
+		sqlSessionTemplate.delete("member.questionDel2", bVO);
 	}
+///////////////////////////////질문 게시판 끝///////////////////////////////////////////////
+///////////////////////////////자유 게시판 시작///////////////////////////////////////////////	
 	//자유게시판 jsonSelect
 	public List<BoardVO> jsonFreeSel(BoardVO bVO) {
 		logger.info("jsonFreeSel 호출 성공");
@@ -72,26 +106,40 @@ public class MemberDao {
 		}
 		return jsonFreeSel;
 	}
-	//질문 글 Insert
+	//자유게시판 글 Insert
 	public void freeIns(BoardVO bVO) {
 		logger.info("(MemberDao) freeIns 호출 성공");
 		sqlSessionTemplate.insert("member.freeIns", bVO);
 	}
-	//글 조회
-	public BoardVO read(int base_post_number) {
-		return sqlSessionTemplate.selectOne("member.read",base_post_number);
+	//자유게시판 글 Delete
+	public void freeDel(BoardVO bVO) {
+		logger.info("(MemberDao) freeDel 호출 성공");
+		sqlSessionTemplate.delete("member.freeDel", bVO);
 	}
-	
-	//글 조회수 증가
-	public void viewCount(BoardVO bVO) {
+///////////////////////////////자유 게시판 끝///////////////////////////////////////////////	
+///////////////////////////////게시판 공통 부분 시작///////////////////////////////////////////////	
+	//게시판 글 읽기
+	public BoardVO boardRead(int base_post_number) {
+		return sqlSessionTemplate.selectOne("member.boardRead",base_post_number);
+	}
+	//게시판 글 조회수 증가
+	public void boardViewCount(BoardVO bVO) {
 		logger.info("조회수 증가해라" + bVO.getBase_post_number() + bVO.getBase_view_count());
-		sqlSessionTemplate.update("member.viewCount",bVO);
+		sqlSessionTemplate.update("member.boardViewCount",bVO);
 	}
-//	<!-- 슬기 -->
+	//게시판 글 Update
+	public void boardUpd(BoardVO bVO) {
+		logger.info("(MemberDao) boardUpd 호출 성공");
+		sqlSessionTemplate.update("member.boardUpd", bVO);
+	}	
+///////////////////////////////게시판 공통 부분 끝///////////////////////////////////////////////	
+	//	<!-- 슬기 -->
 //
 //
 //
 //	<!-- 승범 -->
+
+
 
 
 //	<!-- 승범 -->

@@ -40,7 +40,7 @@
 		<div id="breadcrumb">
 			<div class="container">
 				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-home"></i></a></li>
+					<li><a href="usermain.park"><i class="fa fa-home"></i></a></li>
 					<li><a href="#">고객센터</a></li>
 					<li class="active">질문게시판</li>
 				</ol>
@@ -74,7 +74,7 @@
 					<li><a class="faq-button" href="inquiry.park"> <i
 							class="icon fa fa-plus"></i> 1:1문의
 					</a></li>
-					<li><a class="faq-button" href="new-property.html"> <i
+					<li><a class="faq-button" href="contact.park"> <i
 							class="icon fa fa-plus"></i> 제휴문의
 					</a></li>
 				</ul>

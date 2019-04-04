@@ -40,7 +40,7 @@
 		<div id="breadcrumb">
 			<div class="container">
 				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-home"></i></a></li>
+					<li><a href="usermain.park"><i class="fa fa-home"></i></a></li>
 					<li><a href="#">고객센터</a></li>
 					<li class="active">자유게시판</li>
 				</ol>
@@ -74,7 +74,7 @@
 					<li><a class="faq-button" href="inquiry.park"> <i
 							class="icon fa fa-plus"></i> 1:1문의
 					</a></li>
-					<li><a class="faq-button" href="new-property.html"> <i
+					<li><a class="faq-button" href="contact.park"> <i
 							class="icon fa fa-plus"></i> 제휴문의
 					</a></li>
 				</ul>
@@ -108,7 +108,7 @@
 							<input id="submit" name="submit" type="submit" value="등록" class="btn btn-default" onClick="save()">
 						<!-- 글 등록 버튼 끝 -->
 						<!-- 글 취소 버튼 시작-->
-							<a href="free	.park" class="btn btn-default" >취소</a></span>
+							<a href="free.park" class="btn btn-default" >취소</a></span>
 						<!-- 글 취소 버튼 끝-->
 						</form>
 					</div>
