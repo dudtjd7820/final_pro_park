@@ -6,12 +6,14 @@ public class MemberVO {
 	private String  mem_name        ="";
 	private	int  	mem_point       =0;
 	private String  mem_pw          ="";
-	private	int  	mem_phone       =0;
+	private	String  mem_phone  		="";
 	private String  mem_birthday    ="";
 	private String  mem_uniqueness  ="";
 	private String  mem_email       ="";
 	private String  mem_grade       ="";
 	private String  mem_join_date   ="";
+	
+	
 	public String getMem_id() {
 		return mem_id;
 	}
@@ -36,12 +38,7 @@ public class MemberVO {
 	public void setMem_pw(String mem_pw) {
 		this.mem_pw = mem_pw;
 	}
-	public int getMem_phone() {
-		return mem_phone;
-	}
-	public void setMem_phone(int mem_phone) {
-		this.mem_phone = mem_phone;
-	}
+	
 	public String getMem_birthday() {
 		return mem_birthday;
 	}
@@ -71,6 +68,12 @@ public class MemberVO {
 	}
 	public void setMem_join_date(String mem_join_date) {
 		this.mem_join_date = mem_join_date;
+	}
+	public String getMem_phone() {
+		return mem_phone;
+	}
+	public void setMem_phone(String mem_phone) {
+		this.mem_phone = mem_phone;
 	}
 	
 	
